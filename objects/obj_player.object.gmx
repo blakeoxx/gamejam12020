@@ -70,6 +70,8 @@ while (collision_point(x+sprite_width, y+sprite_height/2, obj_obstacle, false, t
 while (collision_point(x+sprite_width/2, y+0, obj_obstacle, false, true)) { y += 1 }
 while (collision_point(x+sprite_width/2, y+sprite_height, obj_obstacle, false, true)) { y -= 1 }
 
+// Enemy collision checking
+// if (place_meeting(x, y, obj_enemy_parent))
 </string>
           </argument>
         </arguments>

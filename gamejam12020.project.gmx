@@ -65,6 +65,7 @@
     </objects>
     <objects name="menu">
       <object>objects\obj_menuController</object>
+      <object>objects\obj_gameoverController</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -75,6 +76,7 @@
     <room>rooms\rm_level4</room>
     <room>rooms\rm_level5</room>
     <room>rooms\rm_upgrades</room>
+    <room>rooms\rm_gameover</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
