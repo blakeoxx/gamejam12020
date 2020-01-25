@@ -126,3 +126,25 @@ Configs/Default/WindowsUAP/logos/WideLogo.scale-100.png
 Configs/Default/WindowsUAP/SplashScreen.scale-100.png
 
 Configs/Default/WindowsUAP/WinUWPRunner_TemporaryKey.pfx
+Configs/Default/WinPhone/ApplicationIcon.png
+Configs/Default/WinPhone/CycleSmall.png
+Configs/Default/WinPhone/CycleWide1.png
+Configs/Default/WinPhone/CycleWide2.png
+Configs/Default/WinPhone/CycleWide3.png
+Configs/Default/WinPhone/CycleWide4.png
+Configs/Default/WinPhone/CycleWide5.png
+Configs/Default/WinPhone/CycleWide6.png
+Configs/Default/WinPhone/CycleWide7.png
+Configs/Default/WinPhone/CycleWide8.png
+Configs/Default/WinPhone/CycleWide9.png
+Configs/Default/WinPhone/FlipMedBack.png
+Configs/Default/WinPhone/FlipMedFront.png
+Configs/Default/WinPhone/FlipSmallBack.png
+Configs/Default/WinPhone/FlipSmallFront.png
+Configs/Default/WinPhone/FlipWideBack.png
+Configs/Default/WinPhone/FlipWideFront.png
+Configs/Default/WinPhone/IconicSmall.png
+Configs/Default/WinPhone/IconicWide.png
+Configs/Default/WinPhone/SplashScreenImage.jpg
+Configs/Default/WinPhone/SplashScreenImage480.jpg
+Configs/Default/WinPhone/SplashScreenImage720.jpg
