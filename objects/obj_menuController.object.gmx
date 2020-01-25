@@ -25,7 +25,245 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// push this shit
+            <string>/// variables
+// states
+btnPlayHover = false;
+btnWikiHover = false;
+btnPlayPressed = false;
+btnWikiPressed = false;
+
+// positions
+btnWidthHalf = sprite_get_width(spr_button) / 2;
+btnHeightHalf = sprite_get_height(spr_button) / 2;
+
+btnX = room_width / 2;
+btnPlayY = 220;
+btnWikiY = 320;
+
+// events
+
+// drawing
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// particles
+partSizeMin = 2.30;
+partSizeMax = 2.60;
+
+particleSys = part_system_create();
+part_system_depth(particleSys, -9999);
+
+particle = part_type_create();
+part_type_scale(particle, 1, 1);
+part_type_size(particle, 2.30, 2.60, 0.10, 0);
+part_type_speed(particle, 0.15, 0.25, 0.15, 1.50);
+part_type_direction(particle, 86, 94, 0.00, 45);
+part_type_gravity(particle, -0.57, 270);
+part_type_orientation(particle, 0, 360, 2, 0, 1);
+part_type_life(particle, 50, 75);
+part_type_alpha3(particle, 0.80, 0.40, 0);
+part_type_colour2(particle, make_colour_rgb(231, 254, 255), make_colour_rgb(134, 250, 255));
+
+emitter = part_emitter_create(particleSys);
+
+//part_emitter_region(particleSys, emitter, btnX - btnWidthHalf, btnX + btnWidthHalf, btnPlayY - btnHeightHalf, btnPlayY + btnHeightHalf, ps_shape_ellipse, ps_distr_linear);
+part_emitter_region(particleSys, emitter, 0, room_width, room_height, room_height, ps_shape_line, ps_distr_linear);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// play transition
+part_emitter_destroy(particleSys, emitter);
+room_goto(rm_level1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// execute events
+if (mouse_check_button_released(mb_left)) {
+    if (btnPlayPressed) {
+        alarm[0] = room_speed * 2;
+    }
+    
+    if (btnWikiPressed) {
+        url_open('https://en.wikipedia.org/wiki/Grimpoteuthis');
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// mouse
+// play button hover
+if (point_in_rectangle(mouse_x, mouse_y, btnX - btnWidthHalf, btnPlayY - btnHeightHalf, btnX + btnWidthHalf, btnPlayY + btnHeightHalf)) {
+    btnPlayHover = true;
+    
+    // play button click
+    if (mouse_check_button(mb_left)) {
+        btnPlayPressed = true;
+    }
+} else {
+    btnPlayHover = false;
+    btnPlayPressed = false;
+}
+
+
+// wiki button hover
+if (point_in_rectangle(mouse_x, mouse_y, btnX - btnWidthHalf, btnWikiY - btnHeightHalf, btnX + btnWidthHalf, btnWikiY + btnHeightHalf)) {
+    btnWikiHover = true;
+    
+    // wiki button click
+    if (mouse_check_button(mb_left)) {
+        btnWikiPressed = true;
+    }
+} else {
+    btnWikiHover = false;
+    btnWikiPressed = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// particles
+if (alarm[0] != -1) {
+    part_emitter_stream(particleSys, emitter, particle, 2);
+    partSizeMin += 2;
+    partSizeMax += 2;
+    part_type_size(particle, partSizeMin, partSizeMax, 0.10, 0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// buttons
+// start button
+if (btnPlayHover &amp;&amp; !btnPlayPressed) {
+    draw_sprite(spr_button, 1, btnX, btnPlayY)
+    draw_text(btnX, btnPlayY, "Play")
+} else if (btnPlayPressed) {
+    draw_sprite(spr_button, 2, btnX, btnPlayY)
+    draw_text(btnX, btnPlayY, "Play")
+} else {
+    draw_sprite(spr_button, 0, btnX, btnPlayY)
+    draw_text(btnX, btnPlayY, "Play")
+}
+
+// wiki button
+if (btnWikiHover &amp;&amp; !btnWikiPressed) {
+    draw_sprite(spr_button, 1, btnX, btnWikiY)
+    draw_text(btnX, btnWikiY, "Wiki")
+} else if (btnWikiPressed) {
+    draw_sprite(spr_button, 2, btnX, btnWikiY)
+    draw_text(btnX, btnWikiY, "Wiki")
+} else {
+    draw_sprite(spr_button, 0, btnX, btnWikiY)
+    draw_text(btnX, btnWikiY, "Wiki")
+}
 </string>
           </argument>
         </arguments>
