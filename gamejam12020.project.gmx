@@ -27,9 +27,13 @@
       <sprite>sprites\spr_enemy_bomb</sprite>
       <sprite>sprites\spr_enemy_shark</sprite>
     </sprites>
+    <sprites name="menu">
+      <sprite>sprites\spr_button</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bk_menu</background>
+    <background>background\bk_environment</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -62,6 +66,7 @@
     </objects>
     <objects name="menu">
       <object>objects\obj_menuController</object>
+      <object>objects\obj_gameoverController</object>
     </objects>
   </objects>
   <rooms name="rooms">
@@ -72,6 +77,7 @@
     <room>rooms\rm_level4</room>
     <room>rooms\rm_level5</room>
     <room>rooms\rm_upgrades</room>
+    <room>rooms\rm_gameover</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
