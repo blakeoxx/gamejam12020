@@ -27,6 +27,9 @@
       <sprite>sprites\spr_enemy_bomb</sprite>
       <sprite>sprites\spr_enemy_shark</sprite>
     </sprites>
+    <sprites name="menu">
+      <sprite>sprites\spr_button</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bk_menu</background>
