@@ -33,6 +33,7 @@
   </sprites>
   <backgrounds name="background">
     <background>background\bk_menu</background>
+    <background>background\bk_environment</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
