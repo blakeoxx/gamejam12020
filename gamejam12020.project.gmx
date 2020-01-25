@@ -53,10 +53,13 @@
       <object>objects\obj_enemy_shark</object>
     </objects>
     <objects name="level">
-      <object>objects\obj_wall</object>
       <object>objects\obj_obstacle</object>
+      <object>objects\obj_wall</object>
       <object>objects\obj_levelController</object>
       <object>objects\obj_spawner</object>
+    </objects>
+    <objects name="menu">
+      <object>objects\obj_menuController</object>
     </objects>
   </objects>
   <rooms name="rooms">
