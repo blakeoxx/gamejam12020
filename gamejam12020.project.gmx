@@ -5,11 +5,68 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprites name="player">
+      <sprites name="animations">
+        <sprite>sprites\spr_player_idle</sprite>
+        <sprite>sprites\spr_player_side</sprite>
+        <sprite>sprites\spr_player_up</sprite>
+        <sprite>sprites\spr_player_down</sprite>
+      </sprites>
+      <sprite>sprites\spr_player_bullet</sprite>
+    </sprites>
+    <sprites name="level">
+      <sprite>sprites\spr_wall</sprite>
+      <sprite>sprites\spr_obstacle</sprite>
+    </sprites>
+    <sprites name="enemy">
+      <sprite>sprites\spr_enemy_bullet</sprite>
+      <sprite>sprites\spr_enemy_gib</sprite>
+      <sprite>sprites\spr_enemy_fish</sprite>
+      <sprite>sprites\spr_enemy_squid</sprite>
+      <sprite>sprites\spr_enemy_bomb</sprite>
+      <sprite>sprites\spr_enemy_shark</sprite>
+    </sprites>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <scripts name="shooting">
+      <script>scripts\scr_shoot.gml</script>
+      <script>scripts\scr_shoot_spread.gml</script>
+      <script>scripts\scr_shoot_360.gml</script>
+    </scripts>
+  </scripts>
+  <objects name="objects">
+    <objects name="player">
+      <object>objects\obj_player</object>
+      <object>objects\obj_player_bullet</object>
+      <object>objects\obj_money</object>
+    </objects>
+    <objects name="enemy">
+      <object>objects\obj_enemy_parent</object>
+      <object>objects\obj_enemy_bullet</object>
+      <object>objects\obj_enemy_gib</object>
+      <object>objects\obj_enemy_fish</object>
+      <object>objects\obj_enemy_squid</object>
+      <object>objects\obj_enemy_bomb</object>
+      <object>objects\obj_enemy_shark</object>
+    </objects>
+    <objects name="level">
+      <object>objects\obj_wall</object>
+      <object>objects\obj_obstacle</object>
+      <object>objects\obj_levelController</object>
+      <object>objects\obj_spawner</object>
+    </objects>
+  </objects>
   <rooms name="rooms">
-    <room>rooms\room_mainmenu</room>
+    <room>rooms\rm_mainmenu</room>
+    <room>rooms\rm_level1</room>
+    <room>rooms\rm_level2</room>
+    <room>rooms\rm_level3</room>
+    <room>rooms\rm_level4</room>
+    <room>rooms\rm_level5</room>
+    <room>rooms\rm_upgrades</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
