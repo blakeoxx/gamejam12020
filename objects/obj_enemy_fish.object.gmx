@@ -28,14 +28,16 @@
             <string>///stats
 hp = 3;
 
-time = 20;
+time = 35;
 
 speedMax = 3+random(2);
 speed = speedMax;
 speedReduce = speedMax/time;
 
 fireRate = time;
-fireSpeed = speedMax + 1 + random_range(-.2,.2);
+fireSpeed = speedMax + .7 + random_range(-.2,.2);
+
+spread = random_range(18,22);
 
 direction = point_direction(x,y,obj_player.x,obj_player.y);
 image_angle = direction;
@@ -68,9 +70,9 @@ speed -= speedReduce;
 if (time &lt;= 0)
     {
     time = fireRate;
-    scr_shoot(x,y,point_direction(x,y,obj_player.x,obj_player.y),fireSpeed);
+    direction = point_direction(x,y,obj_player.x,obj_player.y) + random_range(-spread,spread);
+    scr_shoot(x,y,direction,fireSpeed);
     speed = speedMax;
-    direction = point_direction(x,y,obj_player.x,obj_player.y);
     image_angle = direction;
     }
 </string>
