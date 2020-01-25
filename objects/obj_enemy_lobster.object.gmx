@@ -7,7 +7,161 @@
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///stats
+hp = 6;
+mode = 0; //0=aim, 1=charge
+
+targetx = obj_player.x;
+targety = obj_player.y;
+direction = point_direction(x,y,targetx,targety);
+image_angle = direction;
+
+time = 0;
+timeAim = 40;
+
+speedCharge = 12+random(2);
+padding = 15; //buffer from edge of room
+
+color = make_colour_hsv(irandom(12),230,120+random(30));
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///wait then charge
+if (mode == 0)
+    {
+    time++;
+    if (time &gt;= timeAim)
+        {
+        mode = 1;
+        speed = speedCharge;
+        time = 0;
+        }
+    }
+
+if (mode == 1)
+    {
+    time++;
+    if (time &gt;= 10)
+        {
+        if ((x &lt; padding) || (x &gt; room_width-padding) || (y &lt; padding) || (y &gt; room_height-padding))
+            {
+            speed = 0;
+            time = 0;
+            mode = 0;
+            targetx = obj_player.x;
+            targety = obj_player.y;
+            direction = point_direction(x,y,targetx,targety);
+            image_angle = direction;
+            }
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///debug move
+x = mouse_x;
+y = mouse_y;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>image_blend = color;
+draw_self();
+
+if (mode == 0)
+    {
+    draw_line(x,y,lerp(x,targetx,50),lerp(y,targety,50));
+    
+    if (time mod 2 == 0 || time mod 3 == 0)
+        {
+        draw_set_colour(c_red);
+        }
+    else
+        {
+        draw_set_colour(c_black);
+        }
+    }
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>
