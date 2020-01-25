@@ -26,6 +26,7 @@
       <sprite>sprites\spr_enemy_squid</sprite>
       <sprite>sprites\spr_enemy_bomb</sprite>
       <sprite>sprites\spr_enemy_shark</sprite>
+      <sprite>sprites\spr_enemy_lobster</sprite>
     </sprites>
     <sprites name="menu">
       <sprite>sprites\spr_button</sprite>
@@ -57,6 +58,7 @@
       <object>objects\obj_enemy_squid</object>
       <object>objects\obj_enemy_bomb</object>
       <object>objects\obj_enemy_shark</object>
+      <object>objects\obj_enemy_lobster</object>
     </objects>
     <objects name="level">
       <object>objects\obj_obstacle</object>
