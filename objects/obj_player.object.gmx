@@ -35,13 +35,15 @@ image_speed = 0.5
 // Give us one life in case we start on a level without a level controller
 if (lives &lt;= 0) lives = 1
 
-// Fire rates for abilities (milliseconds)
+// Fire/recharge rates for abilities (milliseconds)
 fleshyShotRate = 0.5*1000
 cyborgShotRate = 0.8*1000
 fleshyArmRate = 0.8*1000
 cyborgArmRate = 1*1000
 fleshyTaserRate = 5*1000
+fleshyTaserDuration = 0.2*1000
 cyborgTaserRate = 8*1000
+cyborgTaserDuration = 0.2*1000
 fleshyDefenseRate = 10*1000
 fleshyDefenseDuration = 5*1000
 cyborgDefenseRate = 1*1000
@@ -49,7 +51,8 @@ cyborgDefenseDuration = 1*1000
 
 lastShot = 0
 lastArm = 0
-lastTaser = 0
+lastTaserStart = 0
+lastTaserEnd = 0
 lastDefenseStart = 0
 lastDefenseEnd = 0
 </string>
@@ -158,7 +161,79 @@ if (collidedMoney != noone)
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="54">
+    <event eventtype="5" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Use taser
+
+if (global.inventory.hasCyborgTaser)
+{
+    if (lastTaserEnd + cyborgTaserRate &gt;= current_time) return 0;
+    lastTaserStart = current_time
+    lastTaserEnd = current_time + cyborgTaserDuration
+}
+else
+{
+    if (lastTaserEnd + fleshyTaserRate &gt;= current_time) return 0;
+    lastTaserStart = current_time
+    lastTaserEnd = current_time + fleshyTaserDuration
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="5" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Use shield
+
+if (global.inventory.hasCyborgDefense)
+{
+    if (lastDefenseEnd + cyborgDefenseRate &gt;= current_time) return 0;
+    lastDefenseStart = current_time
+    lastDefenseEnd = current_time + cyborgDefenseDuration
+}
+else
+{
+    if (lastDefenseEnd + fleshyDefenseRate &gt;= current_time) return 0;
+    lastDefenseStart = current_time
+    lastDefenseEnd = current_time + fleshyDefenseDuration
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="51">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -181,18 +256,20 @@ targetDirection = point_direction(x, y, mouse_x, mouse_y)
 
 if (global.inventory.hasCyborgArms)
 {
-    
+    if (lastArm + cyborgArmRate &gt;= current_time) return 0;
+    lastArm = current_time
 }
 else
 {
-    
+    if (lastArm + fleshyArmRate &gt;= current_time) return 0;
+    lastArm = current_time
 }
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="53">
+    <event eventtype="6" enumb="50">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -216,13 +293,14 @@ targetDirection = point_direction(x, y, mouse_x, mouse_y)
 if (global.inventory.hasCyborgShots)
 {
     if (lastShot + cyborgShotRate &gt;= current_time) return 0;
-    
+    lastShot = current_time
 }
 else
 {
     if (lastShot + fleshyShotRate &gt;= current_time) return 0;
     bullet = instance_create(x, y, obj_player_bullet)
     bullet.direction = targetDirection
+    lastShot = current_time
 }
 </string>
           </argument>
@@ -246,7 +324,30 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>flipSprite = false
+            <string>/// Draw abilities
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Draw character sprite
+
+flipSprite = false
 if (x == lastX &amp;&amp; y == lastY) sprite_index = spr_player_idle
 else if (x &gt; lastX) // Left
 {
@@ -268,70 +369,6 @@ lastY = y
 if (flipSprite) image_xscale = -1
 draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, 0, c_white, image_alpha)
 image_xscale = 1
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="32">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Use taser
-
-if (global.inventory.hasCyborgTaser)
-{
-    
-}
-else
-{
-    
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="17">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Use shield
-
-if (global.inventory.hasCyborgDefense)
-{
-    
-}
-else
-{
-    
-}
 </string>
           </argument>
         </arguments>
