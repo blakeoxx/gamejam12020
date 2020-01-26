@@ -68,6 +68,9 @@
     <scripts name="boss">
       <script>scripts\scr_follow.gml</script>
     </scripts>
+    <scripts name="tiles">
+      <script>scripts\scr_checkNeighbours.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="player">
