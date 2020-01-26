@@ -118,7 +118,7 @@ global.difficulty = 1;
 global.iniChance = 35;
 global.birthLimit = 3;
 global.deathLimit = 2;
-global.numRun = 1;
+global.numRun = 5;
 global.tileSize = 32;
 </string>
           </argument>
@@ -143,7 +143,7 @@ global.tileSize = 32;
             <string>/// play transition
 part_emitter_destroy(particleSys, emitter);
 
-room_goto(rm_level1);
+room_goto(rm_level);
 </string>
           </argument>
         </arguments>
