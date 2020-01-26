@@ -80,8 +80,7 @@ timer = current_time;
 // genTilePos()
 // give the player a safe zone
 var gridMid = gridSize / 2;
-var safezone = max(1, global.safety - global.difficulty);
-ds_grid_set_region(gridType, gridMid - safezone, gridMid - safezone, gridMid + safezone, gridMid + safezone, 1);
+ds_grid_set_disk(gridType, gridMid, gridMid, global.safety, 1);
 
 for (var i = 0; i &lt; global.numRun; i++) {
     ds_grid_copy(gridTypeOld, gridType);
@@ -119,7 +118,7 @@ for (var i = 0; i &lt; global.numRun; i++) {
 }
 
 // make certain there is a safe zone
-ds_grid_set_region(gridType, gridMid - safezone, gridMid - safezone, gridMid + safezone, gridMid + safezone, 1);
+ds_grid_set_disk(gridType, gridMid, gridMid, global.safety, 1);
 
 show_debug_message("Tile positions updated " + string(global.numRun) + " times in " + string((current_time - timer)/1000) + "s");
 timer = current_time;
@@ -152,7 +151,7 @@ for (var X = 0; X &lt; gridSize; X++) {
             // land
             // check neighbours
             //if (gridType[# X - 1, Y - 1]
-            var left = 5 * global.tileSize;
+            var left = 9 * global.tileSize;
             var top = 2 * global.tileSize;
             var roomX = X * global.tileSize;
             var roomY = Y * global.tileSize;
@@ -164,6 +163,7 @@ for (var X = 0; X &lt; gridSize; X++) {
             var roomX = X * global.tileSize;
             var roomY = Y * global.tileSize;
             gridTile[# X, Y] = tile_add(tileset, left, top, global.tileSize, global.tileSize, roomX, roomY, tileDepth);
+            instance_create(roomX, roomY, obj_wall);
         }
     }
 }
@@ -221,6 +221,64 @@ tile_layer_delete(tileDepth);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// advance wave
+global.wave += 1;
+if (global.wave % 5 == 0) {
+    global.difficulty += 1;
+}
+
+if (global.wave % 10 == 0) {
+    global.safety = max(global.safetyMin, global.safety - 1);
+}
+
+if (global.wave % 15 == 0) {
+    global.numRun = min(global.numRunMax, global.numRun + 1);
+}
+
+// generation settings
+global.iniChance = max(global.iniChanceMin, global.iniChance - 1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// next level
+room_goto(rm_level);
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -240,14 +298,14 @@ tile_layer_delete(tileDepth);
           <argument>
             <kind>1</kind>
             <string>/// debugging
-draw_text(10, 620, "safety: " + string(global.safety));
-draw_text(10, 600, "difficulty: " + string(global.difficulty));
-draw_text(10, 580, "wave: " + string(global.wave));
-draw_text(10, 560, "tileSize: " + string(global.tileSize));
-draw_text(10, 540, "numRun: " + string(global.numRun));
-draw_text(10, 520, "deathLimit: " + string(global.deathLimit));
-draw_text(10, 500, "birthLimit: " + string(global.birthLimit));
-draw_text(10, 480, "iniChance: " + string(global.iniChance));
+draw_text_colour(10, 620, "safety: " + string(global.safety), c_white, c_white, c_white, c_white, 1);
+draw_text_colour(10, 600, "difficulty: " + string(global.difficulty), c_white, c_white, c_white, c_white, 1);
+draw_text_colour(10, 580, "wave: " + string(global.wave), c_white, c_white, c_white, c_white, 1);
+draw_text_colour(10, 560, "tileSize: " + string(global.tileSize), c_white, c_white, c_white, c_white, 1);
+draw_text_colour(10, 540, "numRun: " + string(global.numRun), c_white, c_white, c_white, c_white, 1);
+draw_text_colour(10, 520, "deathLimit: " + string(global.deathLimit), c_white, c_white, c_white, c_white, 1);
+draw_text_colour(10, 500, "birthLimit: " + string(global.birthLimit), c_white, c_white, c_white, c_white, 1);
+draw_text_colour(10, 480, "iniChance: " + string(global.iniChance), c_white, c_white, c_white, c_white, 1);
 </string>
           </argument>
         </arguments>
@@ -294,12 +352,8 @@ game_restart();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// advance wave
-global.wave += 1;
-if (global.wave % 5 == 0) {
-    global.difficulty += 1;
-}
-room_goto(rm_level)
+            <string>/// goto next wave
+instance_destroy(self);
 </string>
           </argument>
         </arguments>

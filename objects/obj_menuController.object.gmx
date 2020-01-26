@@ -113,14 +113,18 @@ part_emitter_region(particleSys, emitter, 0, room_width, room_height, room_heigh
 // difficulty
 global.wave = 1;
 global.difficulty = 1;
-global.safety = 5;
 
 // conway
-global.iniChance = 35;
+global.safety = 6;
+global.iniChance = 70;
 global.birthLimit = 3;
 global.deathLimit = 2;
-global.numRun = 5;
+global.numRun = 1;
 global.tileSize = 32;
+
+global.safetyMin = 3;
+global.iniChanceMin = 30;
+global.numRunMax = 3;
 </string>
           </argument>
         </arguments>
