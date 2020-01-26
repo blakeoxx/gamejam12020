@@ -65,12 +65,13 @@
         <sprite>sprites\spr_portrait_robo_shock</sprite>
         <sprite>sprites\spr_portrait_robo_armor</sprite>
       </sprites>
+      <sprite>sprites\spr_shop_button</sprite>
+      <sprite>sprites\spr_shop_button_large</sprite>
+      <sprite>sprites\spr_shop_robometer</sprite>
+      <sprite>sprites\spr_shop_exit</sprite>
+      <sprite>sprites\spr_shop_purchased</sprite>
     </sprites>
-    <sprite>sprites\spr_shop_button</sprite>
-    <sprite>sprites\spr_shop_button_large</sprite>
-    <sprite>sprites\spr_shop_robometer</sprite>
-    <sprite>sprites\spr_shop_exit</sprite>
-    <sprite>sprites\spr_shop_purchased</sprite>
+    <sprite>sprites\spr_logo</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bk_menu</background>
@@ -132,6 +133,7 @@
     <objects name="menu">
       <object>objects\obj_menuController</object>
       <object>objects\obj_gameoverController</object>
+      <object>objects\obj_logo</object>
     </objects>
     <objects name="bosses">
       <object>objects\obj_boss1</object>
