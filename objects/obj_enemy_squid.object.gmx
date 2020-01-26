@@ -45,6 +45,8 @@ hp = 10;
 timeMax = 80;
 time = timeMax;
 
+image_angle = direction - 90;
+
 speedMax = 6+random(2);
 speed = speedMax;
 speedReduce = speedMax/(time+20);
@@ -52,7 +54,6 @@ speedShot = 4; //shoot when moving faster than this
 
 fireRateMax = 6;
 fireRate = fireRateMax;
-
 
 color = make_colour_hsv(irandom_range(130,190),220,170);
 </string>
@@ -94,13 +95,14 @@ color = make_colour_hsv(irandom_range(130,190),220,170);
             <string>///scoot scoot
 time--;
 speed -= speedReduce;
+image_speed = speed/30;
 if (time &lt;= 0)
     {
     time = timeMax;
     direction = point_direction(x,y,obj_player.x,obj_player.y);
     //shoot lol
     speed = speedMax;
-    image_angle = direction;
+    image_angle = direction - 90; // cause Max(moosa) is lazy
     }
 </string>
           </argument>
