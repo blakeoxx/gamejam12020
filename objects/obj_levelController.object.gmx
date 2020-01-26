@@ -83,7 +83,7 @@ tileset = bk_environment
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -100,7 +100,9 @@ tileset = bk_environment
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text_color(0, 0, "Lives: " + string(lives), c_white, c_white, c_white, c_white, 1)
+            <string>draw_set_halign(fa_left)
+draw_set_valign(fa_top)
+draw_text_color(0, 0, "Lives: " + string(lives), c_white, c_white, c_white, c_white, 1)
 </string>
           </argument>
         </arguments>
