@@ -173,6 +173,7 @@ if (mode == 2) //wait mode
             <string>draw_set_colour(c_white);
 draw_set_alpha(0.4);
 draw_circle(x,y,distance,0);
+draw_set_alpha(1);
 draw_self();
 //image_angle = dir;
 </string>
