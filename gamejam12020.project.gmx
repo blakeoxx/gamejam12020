@@ -102,9 +102,16 @@
   <objects name="objects">
     <objects name="player">
       <object>objects\obj_player</object>
-      <object>objects\obj_player_bullet</object>
       <object>objects\obj_money</object>
       <object>objects\obj_player_inventory</object>
+      <objects name="abilities">
+        <object>objects\obj_player_bullet</object>
+        <object>objects\obj_player_laser</object>
+        <object>objects\obj_player_fist</object>
+        <object>objects\obj_player_cyfist</object>
+        <object>objects\obj_player_taser</object>
+        <object>objects\obj_player_cytaser</object>
+      </objects>
     </objects>
     <objects name="enemy">
       <object>objects\obj_enemy_parent</object>
