@@ -149,6 +149,7 @@
       <object>objects\obj_shop_back</object>
       <object>objects\obj_shop_portrait</object>
       <object>objects\obj_shop_addon</object>
+      <object>objects\obj_shop_preview</object>
     </objects>
   </objects>
   <rooms name="rooms">

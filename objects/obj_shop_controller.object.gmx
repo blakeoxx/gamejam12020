@@ -7,7 +7,259 @@
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// variables
+
+//For testing
+global.inventory.money = 100;
+depthCount = -20;
+
+// buttons
+btnFleshInk = instance_create(32,224,obj_shop_button);
+btnFleshTentacle = instance_create(32,288,obj_shop_button);
+btnFleshJelly = instance_create(32,352,obj_shop_button);
+btnFleshCamo = instance_create(32,416,obj_shop_button);
+btnCyborgLazer = instance_create(448,224,obj_shop_button);
+btnCyborgFist = instance_create(448,288,obj_shop_button);
+btnCyborgShock = instance_create(448,352,obj_shop_button);
+btnCyborgArmor = instance_create(448,416,obj_shop_button);
+
+// texts
+btnFleshInk.theText = "Ink"
+btnFleshTentacle.theText = "Tentacle"
+btnFleshJelly.theText = "Jelly"
+btnFleshCamo.theText = "Camo"
+btnCyborgLazer.theText = "Lazer"
+btnCyborgFist.theText = "Fist"
+btnCyborgShock.theText = "Shock"
+btnCyborgArmor.theText = "Armor"
+
+// itemCost
+btnFleshInk.cost = 10
+btnFleshTentacle.cost = 10
+btnFleshJelly.cost = 10
+btnFleshCamo.cost = 10
+btnCyborgLazer.cost = 10
+btnCyborgFist.cost = 10
+btnCyborgShock.cost = 10
+btnCyborgArmor.cost = 10
+
+preview = instance_create(130,204,obj_shop_preview);
+
+dumbo = instance_create(130,204,obj_shop_portrait);
+
+btnFleshInk.has = true;
+
+// check if he has any abilities already
+if (global.inventory.hasCyborgShots == true) {
+    cyborgPreview = instance_create(130,204,obj_shop_addon);
+    cyborgPreview.image_index = 7;
+    btnCyborgShock.has = true;
+    depthCount -=1;
+    cyborgPreview.depth = depthCount;
+}
+if (global.inventory.hasArms == true) {
+    armsPreview = instance_create(130,204,obj_shop_addon);
+    armsPreview.image_index = 2;
+    btnFleshTentacle.has = true;
+    depthCount -=1;
+    armsPreview.depth = depthCount
+}
+if (global.inventory.hasCyborgArms == true) {
+    cyborgArmsPreview = instance_create(130,204,obj_shop_addon);
+    cyborgArmsPreview.image_index = 6;
+    btnCyborgFist.has = true;
+    depthCount -=1;
+    btnCyborgFist.depth = depthCount;
+}
+if (global.inventory.hasTaser == true) {
+    taserPreview = instance_create(130,204,obj_shop_addon);
+    taserPreview.image_index = 3;
+    btnFleshJelly.has = true;
+    depthCount -=1;
+    taserPreview.depth = depthCount;
+}
+if (global.inventory.hasCyborgTaser == true) {
+    cyborgTaserPreview = instance_create(130,204,obj_shop_addon);
+    cyborgTaserPreview.image_index = 5;
+    btnCyborgLazer.has = true;
+    depthCount -=1;
+    cyborgTaserPreview.depth = depthCount;
+}
+if (global.inventory.hasDefense == true) {
+    defensePreview = instance_create(130,204,obj_shop_addon);
+    defensePreview.image_index = 4;
+    btnFleshCamo.has = true;
+    depthCount -=1;
+    defensePreview.depth = depthCount;
+}
+if (global.inventory.hasCyborgDefense == true) {
+    cyborgDefensePreview = instance_create(130,204,obj_shop_addon);
+    cyborgDefensePreview.image_index = 8;
+    btnCyborgArmor.has = true;
+    depthCount -=1;
+    cyborgDefensePreview.depth = depthCount;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+if (position_meeting(mouse_x, mouse_y, btnFleshInk) &amp;&amp; btnFleshInk.has == false) {
+
+    preview.image_index = 1;
+    if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnFleshInk.cost) {
+    //buy it!
+    global.inventory.hasCyborgShots = true;
+    btnFleshInk.has = true;
+    global.inventory.money -= btnFleshInk.cost;
+    }
+
+} else if (position_meeting(mouse_x, mouse_y, btnFleshTentacle) &amp;&amp; btnFleshTentacle.has == false) {
+
+    preview.image_index = 2;
+    if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnFleshTentacle.cost) {
+    //buy it!
+    global.inventory.hasArms = true;
+    btnFleshTentacle.has = true;
+    global.inventory.money -= btnFleshTentacle.cost;
+    armsPreview = instance_create(130,204,obj_shop_addon);
+    armsPreview.image_index = 2;
+    depthCount -= 1;
+    armsPreview.depth = depthCount;
+    }
+
+} else if (position_meeting(mouse_x, mouse_y, btnFleshJelly) &amp;&amp; btnFleshJelly.has == false) {
+
+    preview.image_index = 3;
+    if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnFleshJelly.cost) {
+    //buy it!
+    global.inventory.hasTaser = true;
+    btnFleshJelly.has = true;
+    global.inventory.money -= btnFleshJelly.cost;
+    taserPreview = instance_create(130,204,obj_shop_addon);
+    taserPreview.image_index = 3;
+    depthCount -= 1;
+    taserPreview.depth = depthCount;
+    }
+
+} else if (position_meeting(mouse_x, mouse_y, btnFleshCamo) &amp;&amp; btnFleshCamo.has == false) {
+
+    preview.image_index = 4;
+    if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnFleshCamo.cost) {
+    //buy it!
+    global.inventory.hasDefense = true;
+    btnFleshCamo.has = true;
+    global.inventory.money -= btnFleshCamo.cost;
+    defensePreview = instance_create(130,204,obj_shop_addon);
+    defensePreview.image_index = 4;
+    depthCount -= 1;
+    defensePreview.depth = depthCount;
+    }
+
+} else if (position_meeting(mouse_x, mouse_y, btnCyborgLazer) &amp;&amp; btnCyborgLazer.has == false) {
+
+    preview.image_index = 5;
+    if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnCyborgLazer.cost) {
+    //buy it!
+    global.inventory.hasCyborgTaser = true;
+    btnCyborgLazer.has = true;
+    global.inventory.money -= btnCyborgLazer.cost;
+    cyborgTaserPreview = instance_create(130,204,obj_shop_addon);
+    cyborgTaserPreview.image_index = 5;
+    depthCount -= 1;
+    cyborgTaserPreview.depth = depthCount;
+    }
+
+} else if (position_meeting(mouse_x, mouse_y, btnCyborgFist) &amp;&amp; btnCyborgFist.has == false) {
+
+    preview.image_index = 6;
+    if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnCyborgFist.cost) {
+    //buy it!
+    global.inventory.hasCyborgArms = true;
+    btnCyborgFist.has = true;
+    global.inventory.money -= btnCyborgFist.cost;
+    cyborgArmsPreview = instance_create(130,204,obj_shop_addon);
+    cyborgArmsPreview.image_index = 6;
+    depthCount -= 1;
+    cyborgArmsPreview.depth = depthCount;
+    }
+
+} else if (position_meeting(mouse_x, mouse_y, btnCyborgShock) &amp;&amp; btnCyborgShock.has == false) {
+
+    preview.image_index = 7;
+    if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnCyborgShock.cost) {
+    //buy it!
+    global.inventory.hasCyborgShots = true;
+    btnCyborgShock.has = true;
+    global.inventory.money -= btnCyborgShock.cost;
+    cyborgPreview = instance_create(130,204,obj_shop_addon);
+    cyborgPreview.image_index = 7;
+    depthCount -= 1;
+    cyborgPreview.depth = depthCount;
+    }
+
+} else if (position_meeting(mouse_x, mouse_y, btnCyborgArmor) &amp;&amp; btnCyborgArmor.has == false) {
+
+    preview.image_index = 8;
+    if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnCyborgArmor.cost) {
+    //buy it!
+    global.inventory.hasCyborgDefense = true;
+    btnCyborgArmor.has = true;
+    global.inventory.money -= btnCyborgArmor.cost;
+    cyborgDefensePreview = instance_create(130,204,obj_shop_addon);
+    cyborgDefensePreview.image_index = 8;
+    depthCount -= 1;
+    cyborgDefensePreview.depth = depthCount;
+    }
+
+
+} else {
+    preview.image_index = 9;
+}
+
+preview.depth = depthCount - 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>

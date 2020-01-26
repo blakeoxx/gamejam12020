@@ -180,6 +180,8 @@ if (collidedMoney != noone)
             <kind>1</kind>
             <string>/// Use taser
 
+if (!global.inventory.hasTaser) return 0;
+
 if (global.inventory.hasCyborgTaser)
 {
     if (lastTaserEnd + cyborgTaserRate &gt;= current_time) return 0;
@@ -216,6 +218,8 @@ else
             <kind>1</kind>
             <string>/// Use shield
 
+if (!global.inventory.hasDefense) return 0;
+
 if (global.inventory.hasCyborgDefense)
 {
     if (lastDefenseEnd + cyborgDefenseRate &gt;= current_time) return 0;
@@ -251,6 +255,8 @@ else
           <argument>
             <kind>1</kind>
             <string>/// Use melee
+
+if (!global.inventory.hasArms) return 0;
 
 targetDirection = point_direction(x, y, mouse_x, mouse_y)
 
@@ -293,6 +299,8 @@ targetDirection = point_direction(x, y, mouse_x, mouse_y)
 if (global.inventory.hasCyborgShots)
 {
     if (lastShot + cyborgShotRate &gt;= current_time) return 0;
+    laser = instance_create(x, y, obj_player_laser)
+    laser.direction = targetDirection
     lastShot = current_time
 }
 else
