@@ -7,7 +7,131 @@
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>beamWidth = 10
+beamLength = 192
+lifetime = 0.2*1000
+
+creationTime = current_time
+impactedEnemies = ds_list_create()
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>ds_list_destroy(impactedEnemies)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>xadjust = cos(degtorad(direction))
+yadjust = 0 - sin(degtorad(direction))
+endX = x + xadjust*beamLength
+endY = y + yadjust*beamLength
+xsideadjust = lengthdir_x(beamWidth/2, direction+90)
+ysideadjust = lengthdir_y(beamWidth/2, direction+90)
+
+collidedEnemy = collision_line(x+xsideadjust, y+ysideadjust, endX+xsideadjust, endY+ysideadjust, obj_enemy_parent, false, true)
+collidedEnemy2 = collision_line(x-xsideadjust, y-ysideadjust, endX-xsideadjust, endY-ysideadjust, obj_enemy_parent, false, true)
+if (collidedEnemy != noone &amp;&amp; ds_list_find_index(impactedEnemies, collidedEnemy) == -1)
+{
+    ds_list_add(impactedEnemies, collidedEnemy)
+    collidedEnemy.hp -= 2
+}
+else if (collidedEnemy2 != noone &amp;&amp; ds_list_find_index(impactedEnemies, collidedEnemy2) == -1)
+{
+    ds_list_add(impactedEnemies, collidedEnemy2)
+    collidedEnemy2.hp -= 2
+}
+
+if (creationTime + lifetime &lt;= current_time) instance_destroy()
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>xadjust = cos(degtorad(direction))
+yadjust = 0 - sin(degtorad(direction))
+endX = x + xadjust*beamLength
+endY = y + yadjust*beamLength
+
+draw_set_color(c_red)
+draw_line_width(x, y, endX, endY, beamWidth)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>

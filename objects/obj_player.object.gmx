@@ -293,6 +293,8 @@ targetDirection = point_direction(x, y, mouse_x, mouse_y)
 if (global.inventory.hasCyborgShots)
 {
     if (lastShot + cyborgShotRate &gt;= current_time) return 0;
+    laser = instance_create(x, y, obj_player_laser)
+    laser.direction = targetDirection
     lastShot = current_time
 }
 else
