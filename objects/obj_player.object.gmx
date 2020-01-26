@@ -97,10 +97,10 @@ if (lives &lt;= 0) room_goto(rm_gameover)
             <string>/// Collision checking
 
 // Obstacle collision
-while (collision_point(x+0, y+sprite_height/2, obj_obstacle, false, true)) { x += 1 }
-while (collision_point(x+sprite_width, y+sprite_height/2, obj_obstacle, false, true)) { x -= 1 }
-while (collision_point(x+sprite_width/2, y+0, obj_obstacle, false, true)) { y += 1 }
-while (collision_point(x+sprite_width/2, y+sprite_height, obj_obstacle, false, true)) { y -= 1 }
+while (collision_point(x-sprite_width/2, y, obj_obstacle, false, true)) { x += 1 }
+while (collision_point(x+sprite_width/2, y, obj_obstacle, false, true)) { x -= 1 }
+while (collision_point(x, y-sprite_height/2, obj_obstacle, false, true)) { y += 1 }
+while (collision_point(x, y+sprite_height/2, obj_obstacle, false, true)) { y -= 1 }
 
 // Enemy collision
 collidedEnemy = instance_place(x, y, obj_enemy_parent)
