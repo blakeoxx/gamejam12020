@@ -47,7 +47,7 @@ fireSpeed = 2;
 shotMax = 6;
 shot = shotMax;
 
-image_speed = 0;
+image_speed = 0.25;
 </string>
           </argument>
         </arguments>
@@ -142,9 +142,11 @@ if (mode == 2) //wait mode
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
-draw_circle(x,y,distance,1);
-image_angle = dir;
+            <string>draw_set_colour(c_white);
+draw_set_alpha(0.4);
+draw_circle(x,y,distance,0);
+draw_self();
+//image_angle = dir;
 </string>
           </argument>
         </arguments>

@@ -176,6 +176,17 @@ if (collidedMoney != noone)
           <argument>
             <kind>1</kind>
             <string>/// Use melee
+
+targetDirection = point_direction(x, y, mouse_x, mouse_y)
+
+if (global.inventory.hasCyborgArms)
+{
+    
+}
+else
+{
+    
+}
 </string>
           </argument>
         </arguments>
@@ -200,13 +211,18 @@ if (collidedMoney != noone)
             <kind>1</kind>
             <string>/// Shoot bullet
 
+targetDirection = point_direction(x, y, mouse_x, mouse_y)
+
 if (global.inventory.hasCyborgShots)
 {
+    if (lastShot + cyborgShotRate &gt;= current_time) return 0;
     
 }
 else
 {
-    
+    if (lastShot + fleshyShotRate &gt;= current_time) return 0;
+    bullet = instance_create(x, y, obj_player_bullet)
+    bullet.direction = targetDirection
 }
 </string>
           </argument>
@@ -275,6 +291,15 @@ image_xscale = 1
           <argument>
             <kind>1</kind>
             <string>/// Use taser
+
+if (global.inventory.hasCyborgTaser)
+{
+    
+}
+else
+{
+    
+}
 </string>
           </argument>
         </arguments>
@@ -298,6 +323,15 @@ image_xscale = 1
           <argument>
             <kind>1</kind>
             <string>/// Use shield
+
+if (global.inventory.hasCyborgDefense)
+{
+    
+}
+else
+{
+    
+}
 </string>
           </argument>
         </arguments>

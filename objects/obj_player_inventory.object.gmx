@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_find(obj_player_inventory, 0) != id) { show_debug_message("Deleting manager " + string(id) + " because its not " + string(instance_find(obj_player_inventory, 0))); instance_destroy() }
+            <string>if (instance_find(obj_player_inventory, 0) != id) instance_destroy()
 
 global.inventory = self
 event_user(0)
@@ -128,7 +128,7 @@ hasCyborgDefense = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_mainmenu || room == rm_gameover) return
+            <string>if (room == rm_mainmenu || room == rm_gameover) return 0;
 
 draw_set_halign(fa_left)
 draw_set_valign(fa_top)
