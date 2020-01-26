@@ -40,7 +40,7 @@ timeAim = 40;
 speedCharge = 12+random(2);
 padding = 15; //buffer from edge of room
 
-color = make_colour_hsv(irandom(12),230,120+random(30));
+color = make_colour_hsv(irandom(25),irandom_range(50,200),irandom_range(200,255));
 </string>
           </argument>
         </arguments>
