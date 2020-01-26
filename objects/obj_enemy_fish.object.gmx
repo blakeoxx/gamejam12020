@@ -41,7 +41,11 @@ spread = random_range(18,22);
 
 direction = point_direction(x,y,obj_player.x,obj_player.y);
 image_angle = direction;
-color = make_colour_hsv(irandom(255),200,200);
+color = make_colour_hsv(random(255),200,200);
+
+imageSize = random_range(1,2);
+image_xscale = imageSize;
+image_yscale = imageSize;
 </string>
           </argument>
         </arguments>
@@ -98,6 +102,7 @@ if (time &lt;= 0)
           <argument>
             <kind>1</kind>
             <string>///draw the guy
+image_speed = speed/4;
 draw_self();
 image_blend = color;
 </string>
