@@ -69,16 +69,40 @@ else if (x &gt; room_width+sprite_width) { x = 0-sprite_width }
 if (y &lt; 0-sprite_height) { y = room_height+sprite_height }
 else if (y &gt; room_width+sprite_height) { y = 0-sprite_height }
 
-// Obstacle collision checking
+// Update invuln time
+if (invulnTimeLeft &gt; 0) invulnTimeLeft = max(invulnTimeLeft - (delta_time/1000000), 0)
+
+// Out of lives?
+if (lives &lt;= 0) room_goto(rm_gameover)
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Collision checking
+
+// Obstacle collision
 while (collision_point(x+0, y+sprite_height/2, obj_obstacle, false, true)) { x += 1 }
 while (collision_point(x+sprite_width, y+sprite_height/2, obj_obstacle, false, true)) { x -= 1 }
 while (collision_point(x+sprite_width/2, y+0, obj_obstacle, false, true)) { y += 1 }
 while (collision_point(x+sprite_width/2, y+sprite_height, obj_obstacle, false, true)) { y -= 1 }
 
-// Update invuln time
-if (invulnTimeLeft &gt; 0) invulnTimeLeft = max(invulnTimeLeft - (delta_time/1000000), 0)
-
-// Enemy collision checking
+// Enemy collision
 collidedEnemy = instance_place(x, y, obj_enemy_parent)
 if (invulnTimeLeft == 0 &amp;&amp; collidedEnemy != noone)
 {
@@ -97,7 +121,7 @@ if (invulnTimeLeft == 0 &amp;&amp; collidedEnemy != noone)
     y += yadjust*32
 }
 
-// Bullet collision checking
+// Bullet collision
 collidedBullet = instance_place(x, y, obj_enemy_bullet)
 if (invulnTimeLeft == 0 &amp;&amp; collidedBullet != noone)
 {
@@ -105,8 +129,13 @@ if (invulnTimeLeft == 0 &amp;&amp; collidedBullet != noone)
     invulnTimeLeft = invulnTime
 }
 
-// Out of lives?
-if (lives &lt;= 0) room_goto(rm_gameover)
+// Money collision
+collidedMoney = instance_place(x, y, obj_money)
+if (collidedMoney != noone)
+{
+    global.inventory.money += 1
+    instance_destroy(collidedMoney)
+}
 </string>
           </argument>
         </arguments>
