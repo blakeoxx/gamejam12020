@@ -79,7 +79,7 @@ lives += 1
 
 lives = 2
 money = 0
-hasCyborgShots = true
+hasCyborgShots = false
 hasArms = false
 hasCyborgArms = false
 hasTaser = false
