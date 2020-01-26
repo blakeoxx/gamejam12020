@@ -135,6 +135,7 @@ if (collidedMoney != noone)
 {
     global.inventory.money += 1
     instance_destroy(collidedMoney)
+    audio_play_sound(snd_money,1,0);
 }
 </string>
           </argument>

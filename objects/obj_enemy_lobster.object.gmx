@@ -73,7 +73,7 @@ if (mode == 0)
         speed = speedCharge;
         time = 0;
         
-        snd = choose(snd_lobster1,snd_lobster2,snd_lobster3,snd_lobster4,snd_lobster5,snd_lobster6,snd_lobster7);
+        snd = choose(snd_lobster1,snd_lobster2,snd_lobster3,snd_lobster4,snd_lobster5,snd_lobster6,snd_lobster7,snd_lobster8);
         audio_play_sound(snd,1,0);
         }
     }

@@ -5,6 +5,9 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound">
+    <sounds name="player">
+      <sound>sound\snd_money</sound>
+    </sounds>
     <sounds name="enemy">
       <sounds name="lobster">
         <sound>sound\snd_lobster1</sound>
@@ -14,6 +17,7 @@
         <sound>sound\snd_lobster5</sound>
         <sound>sound\snd_lobster6</sound>
         <sound>sound\snd_lobster7</sound>
+        <sound>sound\snd_lobster8</sound>
       </sounds>
       <sounds name="boss">
         <sound>sound\snd_lazor1</sound>
