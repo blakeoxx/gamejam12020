@@ -86,8 +86,8 @@ if (invulnTimeLeft == 0 &amp;&amp; collidedEnemy != noone)
     invulnTimeLeft = invulnTime
     
     // Bounce away
-    meX = x + sprite_width/2
-    meY = y + sprite_height/2
+    meX = x
+    meY = y
     enemyX = collidedEnemy.x
     enemyY = collidedEnemy.y
     bounceDirection = degtorad(point_direction(enemyX, enemyY, meX, meY))
@@ -148,9 +148,8 @@ if (invulnTimeLeft &gt; 0) image_alpha = 0.5
 
 lastX = x
 lastY = y
-var drawX = x
-if (flipSprite) { image_xscale = -1; drawX -= sprite_width }
-draw_sprite_ext(sprite_index, image_index, drawX, y, image_xscale, image_yscale, 0, c_white, image_alpha)
+if (flipSprite) image_xscale = -1
+draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, 0, c_white, image_alpha)
 image_xscale = 1
 </string>
           </argument>
