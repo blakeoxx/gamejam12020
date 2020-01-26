@@ -149,11 +149,7 @@ for (var X = 0; X &lt; gridSize; X++) {
     for (var Y = 0; Y &lt; gridSize; Y++) {
         if (gridType[# X, Y] == 1) {
             // land
-            // check neighbours
-            var type = 0;
-            if (gridType[# X - 1, Y - 1] == 0) {
-                
-            }
+            // scr_checkNeighbours(gridType[# X, Y]);
             var left = 9 * global.tileSize;
             var top = 2 * global.tileSize;
             var roomX = X * global.tileSize;
