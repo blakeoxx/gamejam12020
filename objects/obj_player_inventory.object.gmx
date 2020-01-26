@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,42 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// variables
-gridSize = 30
-gridType = ds_grid_create(gridSize, gridSize);
-gridTile = ds_grid_create(gridSize, gridSize);
-tileset = bk_environment
-
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// level creation
-// gridType[# x, y]
-
+            <string>lives = 2
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="1" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -77,31 +48,11 @@ tileset = bk_environment
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_grid_destroy(grid);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="82">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///quick restart thanks bro
-game_restart();
+            <string>if (room == rm_mainmenu || room == rm_gameover) return
+
+draw_set_halign(fa_left)
+draw_set_valign(fa_top)
+draw_text_color(0, 0, "Lives: " + string(lives), c_white, c_white, c_white, c_white, 1)
 </string>
           </argument>
         </arguments>
