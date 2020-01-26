@@ -78,18 +78,17 @@
       <object>objects\obj_enemy_fish</object>
       <object>objects\obj_enemy_squid</object>
       <object>objects\obj_enemy_bomb</object>
-      <object>objects\obj_enemy_shark</object>
+      <object>objects\obj_enemy_lobster</object>
       <object>objects\obj_enemy_lobster</object>
     </objects>
     <objects name="level">
       <object>objects\obj_obstacle</object>
-      <object>objects\obj_wall</object>
+      <object>objects\obj_levelController</object>
       <object>objects\obj_levelController</object>
       <object>objects\obj_spawner</object>
     </objects>
     <objects name="menu">
       <object>objects\obj_menuController</object>
-      <object>objects\obj_gameoverController</object>
     </objects>
     <objects name="bosses">
       <object>objects\obj_boss1</object>

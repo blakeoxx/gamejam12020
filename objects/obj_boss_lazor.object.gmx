@@ -25,9 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>direction = obj_player.direction;
-lazerLength = 300;
-initDirection = obj_boss1.direction;
+            <string>lazerLength = 300;
+//initDirection = direction;
 </string>
           </argument>
         </arguments>

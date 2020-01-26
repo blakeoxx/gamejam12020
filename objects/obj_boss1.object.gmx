@@ -26,11 +26,41 @@
           <argument>
             <kind>1</kind>
             <string>alarm[0] = random_range(300, 500);
+alarm[3] = random_range(200, 400);
 directionSpeed = 0;
 directionPrev = 0;
 
 turningSpeed = 20;
 stop = false;
+mySpeed = 1;
+noFollow = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>bullet = instance_create(self.x, self.y, obj_boss_bullet);
+bullet.direction = direction+180;
+bullet.speed = 100;
+audio_play_sound(snd_lobster7,5,false);
+alarm[3] = random_range(200, 400);
 </string>
           </argument>
         </arguments>
@@ -88,6 +118,8 @@ stop = false;
             <kind>1</kind>
             <string>// shoot a bullet
 lazor = instance_create(self.x, self.y, obj_boss_lazor);
+lazor.initDirection = direction;
+audio_play_sound(snd_lazor1,5,false);
 image_blend = c_white;
 
 // reset alarm
@@ -129,31 +161,41 @@ alarm[1] = 40;
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
+        <id>601</id>
+        <kind>0</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>1</kind>
-            <string>if (stop == false) {
-
-    directionTo = point_direction(x,y,obj_player.x,obj_player.y);
-    directionSpeed = directionTo - directionPrev;
-    turningSpeed = 180/turningSpeed;
-    direction += directionSpeed/turningSpeed;
-    directionPrev = direction;
-    speed = 1;
-
-}
-</string>
+            <kind>9</kind>
+            <script>scr_follow</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
