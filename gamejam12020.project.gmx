@@ -4,7 +4,19 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sounds name="enemy">
+      <sounds name="lobster">
+        <sound>sound\snd_lobster1</sound>
+        <sound>sound\snd_lobster2</sound>
+        <sound>sound\snd_lobster3</sound>
+        <sound>sound\snd_lobster4</sound>
+        <sound>sound\snd_lobster5</sound>
+        <sound>sound\snd_lobster6</sound>
+        <sound>sound\snd_lobster7</sound>
+      </sounds>
+    </sounds>
+  </sounds>
   <sprites name="sprites">
     <sprites name="player">
       <sprites name="animations">
