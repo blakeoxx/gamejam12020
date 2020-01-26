@@ -89,7 +89,6 @@
     </objects>
     <objects name="menu">
       <object>objects\obj_menuController</object>
-      <object>objects\obj_boss1</object>
     </objects>
     <objects name="bosses">
       <object>objects\obj_boss1</object>

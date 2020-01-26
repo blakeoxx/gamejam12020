@@ -118,6 +118,7 @@ stop = false;
             <kind>1</kind>
             <string>// shoot a bullet
 lazor = instance_create(self.x, self.y, obj_boss_lazor);
+lazor.initDirection = direction;
 audio_play_sound(snd_lazor1,5,false);
 image_blend = c_white;
 
