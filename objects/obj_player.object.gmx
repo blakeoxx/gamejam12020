@@ -27,26 +27,31 @@
             <kind>1</kind>
             <string>lastX = x
 lastY = y
-lastFire = 0    // Last fire time. Used for ammo refreshing
 moveRate = 5    // Pixels to move per frame
-invulnTime = 3  // Invulnerability time (seconds) after being hit
-invulnTimeLeft = 0
+invulnTime = 3*1000  // Invulnerability time (milliseconds) after being hit
+lastInvuln = 0
 image_speed = 0.5
 
-// Give us one life in case we start on a level other than main menu
+// Give us one life in case we start on a level without a level controller
 if (lives &lt;= 0) lives = 1
 
-// Fire rates for abilities (seconds)
-fleshyShotRate = 0.5
-cyborgShotRate = 0.8
-fleshyArmRate = 0.8
-cyborgArmRate = 1
-fleshyTaserRate = 5
-cyborgTaserRate = 8
-fleshyDefenseRate = 10
-fleshyDefenseDuration = 5
-cyborgDefenseRate = 1
-cyborgDefenseDuration = 1
+// Fire rates for abilities (milliseconds)
+fleshyShotRate = 0.5*1000
+cyborgShotRate = 0.8*1000
+fleshyArmRate = 0.8*1000
+cyborgArmRate = 1*1000
+fleshyTaserRate = 5*1000
+cyborgTaserRate = 8*1000
+fleshyDefenseRate = 10*1000
+fleshyDefenseDuration = 5*1000
+cyborgDefenseRate = 1*1000
+cyborgDefenseDuration = 1*1000
+
+lastShot = 0
+lastArm = 0
+lastTaser = 0
+lastDefenseStart = 0
+lastDefenseEnd = 0
 </string>
           </argument>
         </arguments>
@@ -69,7 +74,7 @@ cyborgDefenseDuration = 1
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Movement and health/invuln
+            <string>/// Movement and health
 
 // Movement
 if (keyboard_check(ord("A"))) { x -= moveRate }
@@ -82,9 +87,6 @@ if (x &lt; 0-sprite_width) { x = room_width+sprite_width }
 else if (x &gt; room_width+sprite_width) { x = 0-sprite_width }
 if (y &lt; 0-sprite_height) { y = room_height+sprite_height }
 else if (y &gt; room_width+sprite_height) { y = 0-sprite_height }
-
-// Update invuln time
-if (invulnTimeLeft &gt; 0) invulnTimeLeft = max(invulnTimeLeft - (delta_time/1000000), 0)
 
 // Out of lives?
 if (lives &lt;= 0) room_goto(rm_gameover)
@@ -118,10 +120,10 @@ while (collision_point(x, y+sprite_height/2, obj_obstacle, false, true)) { y -= 
 
 // Enemy collision
 collidedEnemy = instance_place(x, y, obj_enemy_parent)
-if (invulnTimeLeft == 0 &amp;&amp; collidedEnemy != noone)
+if (lastInvuln + invulnTime &lt; current_time &amp;&amp; collidedEnemy != noone)
 {
     lives -= 1
-    invulnTimeLeft = invulnTime
+    lastInvuln = current_time
     
     // Bounce away
     meX = x
@@ -137,10 +139,10 @@ if (invulnTimeLeft == 0 &amp;&amp; collidedEnemy != noone)
 
 // Bullet collision
 collidedBullet = instance_place(x, y, obj_enemy_bullet)
-if (invulnTimeLeft == 0 &amp;&amp; collidedBullet != noone)
+if (lastInvuln + invulnTime &lt; current_time &amp;&amp; collidedBullet != noone)
 {
     lives -= 1
-    invulnTimeLeft = invulnTime
+    lastInvuln = current_time
 }
 
 // Money collision
@@ -243,7 +245,7 @@ else if (y &gt; lastY) sprite_index = spr_player_down
 else if (y &lt; lastY) sprite_index = spr_player_up
 
 image_alpha = 1
-if (invulnTimeLeft &gt; 0) image_alpha = 0.5
+if (lastInvuln + invulnTime &gt;= current_time) image_alpha = 0.5
 
 lastX = x
 lastY = y
