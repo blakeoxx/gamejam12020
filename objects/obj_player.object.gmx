@@ -35,6 +35,18 @@ image_speed = 0.5
 
 // Give us one life in case we start on a level other than main menu
 if (lives &lt;= 0) lives = 1
+
+// Fire rates for abilities (seconds)
+fleshyShotRate = 0.5
+cyborgShotRate = 0.8
+fleshyArmRate = 0.8
+cyborgArmRate = 1
+fleshyTaserRate = 5
+cyborgTaserRate = 8
+fleshyDefenseRate = 10
+fleshyDefenseDuration = 5
+cyborgDefenseRate = 1
+cyborgDefenseDuration = 1
 </string>
           </argument>
         </arguments>
@@ -57,7 +69,9 @@ if (lives &lt;= 0) lives = 1
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Movement
+            <string>/// Movement and health/invuln
+
+// Movement
 if (keyboard_check(ord("A"))) { x -= moveRate }
 if (keyboard_check(ord("D"))) { x += moveRate }
 if (keyboard_check(ord("W"))) { y -= moveRate }
@@ -142,6 +156,61 @@ if (collidedMoney != noone)
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="54">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Use melee
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Shoot bullet
+
+if (global.inventory.hasCyborgShots)
+{
+    
+}
+else
+{
+    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -181,6 +250,52 @@ lastY = y
 if (flipSprite) image_xscale = -1
 draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, 0, c_white, image_alpha)
 image_xscale = 1
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Use taser
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Use shield
 </string>
           </argument>
         </arguments>
