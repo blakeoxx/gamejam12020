@@ -32,6 +32,9 @@ moveRate = 5    // Pixels to move per frame
 invulnTime = 3  // Invulnerability time (seconds) after being hit
 invulnTimeLeft = 0
 image_speed = 0.5
+
+// Give us one life in case we start on a level other than main menu
+if (lives &lt;= 0) lives = 1
 </string>
           </argument>
         </arguments>
