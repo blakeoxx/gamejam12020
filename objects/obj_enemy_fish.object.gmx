@@ -41,7 +41,7 @@ spread = random_range(18,22);
 
 direction = point_direction(x,y,obj_player.x,obj_player.y);
 image_angle = direction;
-color = make_colour_hsv(random(255),200,200);
+color = make_colour_hsv(irandom(255),200,200);
 </string>
           </argument>
         </arguments>
