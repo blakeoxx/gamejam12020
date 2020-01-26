@@ -113,6 +113,7 @@ part_emitter_region(particleSys, emitter, 0, room_width, room_height, room_heigh
 // difficulty
 global.wave = 1;
 global.difficulty = 1;
+global.safety = 5;
 
 // conway
 global.iniChance = 35;

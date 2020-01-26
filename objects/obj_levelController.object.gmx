@@ -31,6 +31,8 @@ gridType = ds_grid_create(gridSize, gridSize);
 gridTypeOld = ds_grid_create(gridSize, gridSize);
 gridTile = ds_grid_create(gridSize, gridSize);
 tileset = bk_environment
+
+tileDepth = 999;
 </string>
           </argument>
         </arguments>
@@ -76,6 +78,11 @@ show_debug_message("Initial positions seeded in " + string((current_time - timer
 timer = current_time;
 
 // genTilePos()
+// give the player a safe zone
+var gridMid = gridSize / 2;
+var safezone = max(1, global.safety - global.difficulty);
+ds_grid_set_region(gridType, gridMid - safezone, gridMid - safezone, gridMid + safezone, gridMid + safezone, 1);
+
 for (var i = 0; i &lt; global.numRun; i++) {
     ds_grid_copy(gridTypeOld, gridType);
     
@@ -111,8 +118,8 @@ for (var i = 0; i &lt; global.numRun; i++) {
     }
 }
 
-// give player a safe starting position
-
+// make certain there is a safe zone
+ds_grid_set_region(gridType, gridMid - safezone, gridMid - safezone, gridMid + safezone, gridMid + safezone, 1);
 
 show_debug_message("Tile positions updated " + string(global.numRun) + " times in " + string((current_time - timer)/1000) + "s");
 timer = current_time;
@@ -137,9 +144,29 @@ timer = current_time;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// surface
-update = true;
-surface = surface_create(room_width, room_height);
+            <string>/// tile creation
+// initial tile creation
+for (var X = 0; X &lt; gridSize; X++) {
+    for (var Y = 0; Y &lt; gridSize; Y++) {
+        if (gridType[# X, Y] == 1) {
+            // land
+            // check neighbours
+            //if (gridType[# X - 1, Y - 1]
+            var left = 5 * global.tileSize;
+            var top = 2 * global.tileSize;
+            var roomX = X * global.tileSize;
+            var roomY = Y * global.tileSize;
+            gridTile[# X, Y] = tile_add(tileset, left, top, global.tileSize, global.tileSize, roomX, roomY, tileDepth);
+        } else {
+            // goo lagoon
+            var left = 1 * global.tileSize;
+            var top = 1 * global.tileSize;
+            var roomX = X * global.tileSize;
+            var roomY = Y * global.tileSize;
+            gridTile[# X, Y] = tile_add(tileset, left, top, global.tileSize, global.tileSize, roomX, roomY, tileDepth);
+        }
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -184,10 +211,12 @@ if (instance_number(obj_player_inventory) == 0) instance_create(0, 0, obj_player
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// destroy grids
+            <string>/// destroy stuff
 ds_grid_destroy(gridType);
 ds_grid_destroy(gridTypeOld);
 ds_grid_destroy(gridTile);
+
+tile_layer_delete(tileDepth);
 </string>
           </argument>
         </arguments>
@@ -211,83 +240,14 @@ ds_grid_destroy(gridTile);
           <argument>
             <kind>1</kind>
             <string>/// debugging
-draw_text(10, 620, "difficulty: " + string(global.difficulty));
-draw_text(10, 600, "wave: " + string(global.wave));
-draw_text(10, 580, "tileSize: " + string(global.tileSize));
-draw_text(10, 560, "numRun: " + string(global.numRun));
-draw_text(10, 540, "deathLimit: " + string(global.deathLimit));
-draw_text(10, 520, "birthLimit: " + string(global.birthLimit));
-draw_text(10, 500, "iniChance: " + string(global.iniChance));
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// drawing on surface
-if (update) {
-    if (!surface_exists(surface)) {
-        surface = surface_create(room_width, room_height);
-    }
-    
-    surface_set_target(surface);
-    for (var Y = 0; Y &lt; gridSize; Y++) {
-        for (var X = 0; X &lt; gridSize; X++) {
-            var posX = X * global.tileSize;
-            var posY = Y * global.tileSize;
-            
-            if (gridType[# X, Y] == 1) {
-                draw_rectangle_colour(posX, posY, posX+(global.tileSize-1), posY+(global.tileSize-1), color1, color1, color1, color1, false);
-            }
-            
-            if (gridType[# X, Y] == 0) {
-                draw_rectangle_colour(posX, posY, posX+(global.tileSize-1), posY+(global.tileSize-1), color0, color0, color0, color0, false);
-            }
-        }
-    }
-    update = false;
-    surface_reset_target();
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// drawing the surface
-if (surface_exists(surface)) {
-    draw_surface(surface, 0, 0);
-}
+draw_text(10, 620, "safety: " + string(global.safety));
+draw_text(10, 600, "difficulty: " + string(global.difficulty));
+draw_text(10, 580, "wave: " + string(global.wave));
+draw_text(10, 560, "tileSize: " + string(global.tileSize));
+draw_text(10, 540, "numRun: " + string(global.numRun));
+draw_text(10, 520, "deathLimit: " + string(global.deathLimit));
+draw_text(10, 500, "birthLimit: " + string(global.birthLimit));
+draw_text(10, 480, "iniChance: " + string(global.iniChance));
 </string>
           </argument>
         </arguments>
