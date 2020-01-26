@@ -164,6 +164,7 @@ for (var X = 0; X &lt; gridSize; X++) {
             var roomX = X * global.tileSize;
             var roomY = Y * global.tileSize;
             gridTile[# X, Y] = tile_add(tileset, left, top, global.tileSize, global.tileSize, roomX, roomY, tileDepth);
+            instance_create(roomX, roomY, obj_wall);
         }
     }
 }
