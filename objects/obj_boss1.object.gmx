@@ -42,12 +42,13 @@
             <string>alarm[0] = random_range(300, 500);
 alarm[3] = random_range(200, 400);
 directionSpeed = 0;
-directionPrev = 0;
+directionPrev = direction;
 
 turningSpeed = 20;
 stop = false;
 mySpeed = 1;
 noFollow = false;
+directionToPrev = 0;
 </string>
           </argument>
         </arguments>
@@ -248,7 +249,10 @@ alarm[1] = 40;
             <string>image_angle = direction - 90;
 draw_self();
 draw_set_colour(c_red);
-draw_text(x+20, y+20, image_angle);
+draw_text(x+20, y+20, directionTo);
+draw_text(x+20, y+35, directionDiff);
+draw_text(x+20, y+50, turningSpeed);
+draw_text(x+20, y+65, direction);
 </string>
           </argument>
         </arguments>
