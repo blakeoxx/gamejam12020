@@ -28,10 +28,9 @@
             <string>/// variables
 gridSize = 30
 gridType = ds_grid_create(gridSize, gridSize);
+gridTypeOld = ds_grid_create(gridSize, gridSize);
 gridTile = ds_grid_create(gridSize, gridSize);
 tileset = bk_environment
-
-difficulty = instance_find(obj_difficulty, 0);
 </string>
           </argument>
         </arguments>
@@ -54,7 +53,34 @@ difficulty = instance_find(obj_difficulty, 0);
             <kind>1</kind>
             <string>/// level creation
 // gridType[# x, y]
+timer = current_time;
+height = (room_height / global.tileSize);
+width = (room_width / global.tileSize);
+color0 = c_blue;
+color1 = c_green;
 
+show_debug_message("Variables initialised in " + string((current_time - timer)/1000) + "s");
+timer = current_time;
+
+// initPos()
+// randomize();
+for (var Y = 0; Y &lt; width; Y++) {
+    for (var X = 0; X &lt; height; X++) {
+        if (irandom(100) &lt; global.iniChance) {
+            gridType[# X, Y] = 1;
+        } else {
+            gridType[# X, Y] = 0;
+        }
+    }
+}
+
+show_debug_message("Initial positions seeded in " + string((current_time - timer)/1000) + "s");
+timer = current_time;
+
+// genTilePos()
+for (var i = 0; i &lt; global.numRun; i++) {
+    
+}
 </string>
           </argument>
         </arguments>
@@ -99,8 +125,41 @@ if (instance_number(obj_player_inventory) == 0) instance_create(0, 0, obj_player
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>ds_grid_destroy(gridType);
+            <string>/// destroy datastructures
+ds_grid_destroy(gridType);
+ds_grid_destroy(gridTypeOld);
 ds_grid_destroy(gridTile);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// debug
+draw_text(10, 620, "wave: " + string(global.wave));
+draw_text(10, 600, "difficulty: " + string(global.difficulty));
+
+draw_text(10, 580, "tileSize: " + string(global.tileSize));
+draw_text(10, 560, "numRun: " + string(global.numRun));
+draw_text(10, 540, "deathLimit: " + string(global.deathLimit));
+draw_text(10, 520, "birthLimit: " + string(global.birthLimit));
+draw_text(10, 500, "iniChance: " + string(global.iniChance));
 </string>
           </argument>
         </arguments>
@@ -148,9 +207,9 @@ game_restart();
           <argument>
             <kind>1</kind>
             <string>/// advance wave
-difficulty.wave += 1;
-if (difficulty.wave % 5 == 0) {
-    difficulty.difficulty += 1;
+global.wave += 1;
+if (global.wave % 5 == 0) {
+    global.difficulty += 1;
 }
 room_goto(rm_level1)
 </string>

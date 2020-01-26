@@ -90,7 +90,6 @@
       <object>objects\obj_obstacle</object>
       <object>objects\obj_wall</object>
       <object>objects\obj_levelController</object>
-      <object>objects\obj_difficulty</object>
       <object>objects\obj_spawner</object>
     </objects>
     <objects name="menu">

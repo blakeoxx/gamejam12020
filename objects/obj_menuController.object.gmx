@@ -109,14 +109,39 @@ part_emitter_region(particleSys, emitter, 0, room_width, room_height, room_heigh
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// initialise level variables
+// difficulty
+global.wave = 1;
+global.difficulty = 1;
+
+// conway
+global.iniChance = 35;
+global.birthLimit = 3;
+global.deathLimit = 2;
+global.numRun = 1;
+global.tileSize = 32;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// play transition
 part_emitter_destroy(particleSys, emitter);
-
-// create the persistent difficulty tracker
-if (instance_exists(obj_difficulty)) {
-    instance_destroy(instance_find(obj_difficulty, 0));
-}
-instance_create(0, 0, obj_difficulty)
 
 room_goto(rm_level1);
 </string>
