@@ -72,6 +72,8 @@
     </objects>
     <objects name="bosses">
       <object>objects\obj_boss1</object>
+      <object>objects\obj_boss_bullet</object>
+      <object>objects\obj_boss_lazor</object>
     </objects>
   </objects>
   <rooms name="rooms">
