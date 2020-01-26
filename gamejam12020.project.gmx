@@ -15,6 +15,10 @@
         <sound>sound\snd_lobster6</sound>
         <sound>sound\snd_lobster7</sound>
       </sounds>
+      <sounds name="boss">
+        <sound>sound\snd_lazor1</sound>
+        <sound>sound\snd_lazor2</sound>
+      </sounds>
     </sounds>
   </sounds>
   <sprites name="sprites">
@@ -39,6 +43,7 @@
       <sprite>sprites\spr_enemy_bomb</sprite>
       <sprite>sprites\spr_enemy_shark</sprite>
       <sprite>sprites\spr_enemy_lobster</sprite>
+      <sprite>sprites\spr_enemy_missile</sprite>
     </sprites>
     <sprites name="menu">
       <sprite>sprites\spr_button</sprite>
@@ -54,6 +59,9 @@
       <script>scripts\scr_shoot.gml</script>
       <script>scripts\scr_shoot_spread.gml</script>
       <script>scripts\scr_shoot_360.gml</script>
+    </scripts>
+    <scripts name="boss">
+      <script>scripts\scr_follow.gml</script>
     </scripts>
   </scripts>
   <objects name="objects">

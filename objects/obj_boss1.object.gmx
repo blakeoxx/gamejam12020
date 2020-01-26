@@ -25,11 +25,44 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = random_range(100, 200);
+            <string>alarm[0] = random_range(300, 500);
 directionSpeed = 0;
 directionPrev = 0;
 
 turningSpeed = 20;
+stop = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// shoot a bullet
+//instance_create(self.x, self.y, obj_boss_bullet);
+
+stop = false;
+
+// reset alarm
+alarm[0] = random_range(100, 200);
+
+instance_destroy(lazor);
+
 stop = false;
 </string>
           </argument>
@@ -54,12 +87,11 @@ stop = false;
           <argument>
             <kind>1</kind>
             <string>// shoot a bullet
-//instance_create(self.x, self.y, obj_boss_bullet);
-
-stop = false;
+lazor = instance_create(self.x, self.y, obj_boss_lazor);
+image_blend = c_white;
 
 // reset alarm
-alarm[0] = random_range(100, 200);
+alarm[2] = 80;
 </string>
           </argument>
         </arguments>
@@ -84,9 +116,11 @@ alarm[0] = random_range(100, 200);
             <kind>1</kind>
             <string>stop = true;
 speed = 0;
-draw_set_colour(c_red);
-draw_line(x,y,lerp(x,obj_player.x,50),lerp(y,obj_player.y,50));
-draw_line(x,y,lerp(x,obj_player.x,50),lerp(y,obj_player.y,50));
+
+//get ready to lazorrr
+image_blend = c_red;
+alarm[1] = 40;
+
 </string>
           </argument>
         </arguments>
