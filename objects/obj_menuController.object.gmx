@@ -111,6 +111,13 @@ part_emitter_region(particleSys, emitter, 0, room_width, room_height, room_heigh
             <kind>1</kind>
             <string>/// play transition
 part_emitter_destroy(particleSys, emitter);
+
+// create the persistent difficulty tracker
+if (instance_exists(obj_difficulty)) {
+    instance_destroy(instance_find(obj_difficulty, 0));
+}
+instance_create(0, 0, obj_difficulty)
+
 room_goto(rm_level1);
 </string>
           </argument>
