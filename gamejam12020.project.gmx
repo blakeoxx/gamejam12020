@@ -53,10 +53,29 @@
     <sprites name="menu">
       <sprite>sprites\spr_button</sprite>
     </sprites>
+    <sprites name="shop">
+      <sprites name="octo_portrait">
+        <sprite>sprites\spr_portrait_main</sprite>
+        <sprite>sprites\spr_portrait_flesh_ink</sprite>
+        <sprite>sprites\spr_portrait_flesh_tentacle</sprite>
+        <sprite>sprites\spr_portrait_flesh_jelly</sprite>
+        <sprite>sprites\spr_portrait_flesh_camo</sprite>
+        <sprite>sprites\spr_portrait_robo_lazer</sprite>
+        <sprite>sprites\spr_portrait_robo_fist</sprite>
+        <sprite>sprites\spr_portrait_robo_shock</sprite>
+        <sprite>sprites\spr_portrait_robo_armor</sprite>
+      </sprites>
+    </sprites>
+    <sprite>sprites\spr_shop_button</sprite>
+    <sprite>sprites\spr_shop_button_large</sprite>
+    <sprite>sprites\spr_shop_robometer</sprite>
+    <sprite>sprites\spr_shop_exit</sprite>
+    <sprite>sprites\spr_shop_purchased</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bk_menu</background>
     <background>background\bk_environment</background>
+    <background>background\bk_shop</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -72,6 +91,14 @@
       <script>scripts\scr_checkNeighbours.gml</script>
     </scripts>
   </scripts>
+  <fonts name="fonts">
+    <fonts name="shop">
+      <font>fonts\fnt_shop_money</font>
+      <font>fonts\fnt_shop_button</font>
+      <font>fonts\fnt_shop_title</font>
+      <font>fonts\fnt_shop_textbox</font>
+    </fonts>
+  </fonts>
   <objects name="objects">
     <objects name="player">
       <object>objects\obj_player</object>
