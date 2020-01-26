@@ -145,22 +145,61 @@ timer = current_time;
             <kind>1</kind>
             <string>/// tile creation
 // initial tile creation
+guy = false;
+guyRng = irandom(100);
 for (var X = 0; X &lt; gridSize; X++) {
     for (var Y = 0; Y &lt; gridSize; Y++) {
         if (gridType[# X, Y] == 1) {
             // land
-            // scr_checkNeighbours(gridType[# X, Y]);
-            var left = 9 * global.tileSize;
-            var top = 2 * global.tileSize;
+            var rng = irandom(1000);
+            var left = 0 * global.tileSize;
+            var top = 0 * global.tileSize;
+            if (rng &gt;= 975 &amp;&amp; rng &lt; 990) {
+                // 1.5% chance for rocks and grass
+                var left = choose(2, 3, 4) * global.tileSize;
+                var top = 0 * global.tileSize;
+            } else if (rng &gt;= 990 &amp;&amp; rng &lt; 995) {
+                // 0.5% chance for sea anemone
+                var left = choose(3, 4) * global.tileSize;
+                var top = choose(1, 2) * global.tileSize;
+            } else if (rng &gt;= 995 &amp;&amp; rng &lt; 998) {
+                // 0.3% chance for a seastar
+                var left = 2 * global.tileSize;
+                var top = 1 * global.tileSize;
+            } else if (rng &gt;= 998 &amp;&amp; rng &lt; 1000) {
+                // 0.2% chance for a sand castle
+                if (X &gt; 0 &amp;&amp; Y &gt; 0 &amp;&amp; gridType[# X-1, Y-1] == 1 &amp;&amp; gridType[# X-1, Y] == 1 &amp;&amp; gridType[# X, Y-1] == 1) {
+                    var left = 1 * global.tileSize;
+                    var top = 2 * global.tileSize;
+                    tile_delete(gridTile[# X-1, Y-1]);
+                    gridTile[# X-1, Y-1] = tile_add(tileset, 0, 1 * global.tileSize, global.tileSize, global.tileSize,
+                        (X - 1) * global.tileSize, (Y - 1) * global.tileSize, tileDepth);
+                    tile_delete(gridTile[# X-1, Y]);
+                    gridTile[# X-1, Y] = tile_add(tileset, 0, 2 * global.tileSize, global.tileSize, global.tileSize,
+                        (X - 1) * global.tileSize, (Y - 0) * global.tileSize, tileDepth);
+                    tile_delete(gridTile[# X, Y-1]);
+                    gridTile[# X, Y-1] = tile_add(tileset, 1 * global.tileSize, 1 * global.tileSize, global.tileSize, global.tileSize,
+                        (X - 0) * global.tileSize, (Y - 1) * global.tileSize, tileDepth);
+                }
+            } else if (rng == 1000 &amp;&amp; guyRng &gt;= 95 &amp;&amp; !guy) {
+                var loc = gridSize/2
+                if ((X &lt; loc-10) || (X &gt; loc+10) || (Y &lt; loc-10) || (Y &gt; loc+10)) {
+                    var left = 2 * global.tileSize;
+                    var top = 2 * global.tileSize;
+                    guy = true;
+                }
+            }
             var roomX = X * global.tileSize;
             var roomY = Y * global.tileSize;
+            
             gridTile[# X, Y] = tile_add(tileset, left, top, global.tileSize, global.tileSize, roomX, roomY, tileDepth);
         } else {
             // goo lagoon
             var left = 1 * global.tileSize;
-            var top = 1 * global.tileSize;
+            var top = 0 * global.tileSize;
             var roomX = X * global.tileSize;
             var roomY = Y * global.tileSize;
+            
             gridTile[# X, Y] = tile_add(tileset, left, top, global.tileSize, global.tileSize, roomX, roomY, tileDepth);
             instance_create(roomX, roomY, obj_wall);
         }
@@ -297,6 +336,7 @@ room_goto(rm_level);
           <argument>
             <kind>1</kind>
             <string>/// debugging
+/*
 draw_text_colour(10, 620, "safety: " + string(global.safety), c_white, c_white, c_white, c_white, 1);
 draw_text_colour(10, 600, "difficulty: " + string(global.difficulty), c_white, c_white, c_white, c_white, 1);
 draw_text_colour(10, 580, "wave: " + string(global.wave), c_white, c_white, c_white, c_white, 1);
@@ -305,6 +345,44 @@ draw_text_colour(10, 540, "numRun: " + string(global.numRun), c_white, c_white, 
 draw_text_colour(10, 520, "deathLimit: " + string(global.deathLimit), c_white, c_white, c_white, c_white, 1);
 draw_text_colour(10, 500, "birthLimit: " + string(global.birthLimit), c_white, c_white, c_white, c_white, 1);
 draw_text_colour(10, 480, "iniChance: " + string(global.iniChance), c_white, c_white, c_white, c_white, 1);
+*/
+
+draw_text_colour(10, 620, "guy: " + string(guy), c_white, c_white, c_white, c_white, 1);
+draw_text_colour(10, 600, "guyRng: " + string(guyRng), c_white, c_white, c_white, c_white, 1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// tile positions
+/*
+for (var X = 0; X &lt; gridSize; X++) {
+    for (var Y = 0; Y &lt; gridSize; Y++) {
+        draw_text_ext_transformed_colour(
+            X*global.tileSize,
+            Y*global.tileSize,
+            "[" + string(X) + "|" + string(Y) + "]",
+            0, 9999, 0.5, 0.5, 0,
+            c_red, c_red, c_red, c_red, 1);
+    }
+}
 </string>
           </argument>
         </arguments>

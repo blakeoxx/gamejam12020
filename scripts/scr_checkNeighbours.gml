@@ -1,5 +1,8 @@
-/// scr_checkNeighbours(tile)
-var neighb = 0;
+/// scr_checkNeighbours(X, Y)
+var neighb = "";
+var oob = gridSize - 1;
+var X = argument0;
+var Y = argument1;
 
-// check if on borders
 
+return neighb;
