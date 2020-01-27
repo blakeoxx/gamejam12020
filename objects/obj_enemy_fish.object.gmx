@@ -42,7 +42,7 @@
             <string>///stats
 hp = 3;
 
-time = 35;
+time = irandom_range(33,37);
 
 speedMax = 3+random(2);
 speed = speedMax;
@@ -106,6 +106,9 @@ if (time &lt;= 0)
     scr_shoot(x,y,direction,fireSpeed);
     speed = speedMax;
     image_angle = direction;
+    
+    var snd = choose(snd_fish1,snd_fish2,snd_fish3,snd_fish4,snd_fish5,snd_fish6,snd_fish7,snd_fish8,snd_fish9,); //"normal" sounds
+    audio_play_sound(snd,1,0);
     }
 </string>
           </argument>
