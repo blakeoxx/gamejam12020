@@ -46,7 +46,7 @@ cyborgTaserRate = 8*1000
 cyborgTaserDuration = 0.2*1000
 fleshyDefenseRate = 10*1000
 fleshyDefenseDuration = 5*1000
-cyborgDefenseRate = 1*1000
+cyborgDefenseRate = 3*1000
 cyborgDefenseDuration = 1*1000
 
 lastShot = 0
@@ -91,6 +91,14 @@ else if (x &gt; room_width+sprite_width) { x = 0-sprite_width }
 if (y &lt; 0-sprite_height) { y = room_height+sprite_height }
 else if (y &gt; room_width+sprite_height) { y = 0-sprite_height }
 
+// Reset enemy targetting after fleshy defense wears off
+if (obj_enemy_parent.canShoot == false &amp;&amp;
+    global.inventory.hasDefense &amp;&amp; !global.inventory.hasCyborgDefense &amp;&amp;
+    current_time &gt; lastDefenseStart &amp;&amp; current_time &lt;= lastDefenseEnd)
+{
+    obj_enemy_parent.canShoot = true
+}
+
 // Out of lives?
 if (lives &lt;= 0) room_goto(rm_gameover)
 </string>
@@ -121,9 +129,17 @@ while (collision_point(x+sprite_width/2, y, obj_obstacle, false, true)) { x -= 1
 while (collision_point(x, y-sprite_height/2, obj_obstacle, false, true)) { y += 1 }
 while (collision_point(x, y+sprite_height/2, obj_obstacle, false, true)) { y -= 1 }
 
+// Calculate invulnerability
+isInvuln = false
+if (lastInvuln + invulnTime &gt;= current_time || 
+    (global.inventory.hasCyborgDefense &amp;&amp; current_time &gt; lastDefenseStart &amp;&amp; current_time &lt;= lastDefenseEnd))
+{
+    isInvuln = true
+}
+
 // Enemy collision
 collidedEnemy = instance_place(x, y, obj_enemy_parent)
-if (lastInvuln + invulnTime &lt; current_time &amp;&amp; collidedEnemy != noone)
+if (!isInvuln &amp;&amp; collidedEnemy != noone)
 {
     lives -= 1
     lastInvuln = current_time
@@ -142,7 +158,7 @@ if (lastInvuln + invulnTime &lt; current_time &amp;&amp; collidedEnemy != noone)
 
 // Bullet collision
 collidedBullet = instance_place(x, y, obj_enemy_bullet)
-if (lastInvuln + invulnTime &lt; current_time &amp;&amp; collidedBullet != noone)
+if (!isInvuln &amp;&amp; collidedBullet != noone)
 {
     lives -= 1
     lastInvuln = current_time
@@ -235,6 +251,7 @@ else
     if (lastDefenseEnd + fleshyDefenseRate &gt;= current_time) return 0;
     lastDefenseStart = current_time
     lastDefenseEnd = current_time + fleshyDefenseDuration
+    obj_enemy_parent.canShoot = false
 }
 </string>
           </argument>
@@ -341,7 +358,9 @@ else
 flipSprite = false
 if (current_time &gt; lastDefenseStart &amp;&amp; current_time &lt;= lastDefenseEnd)
 {
-    //sprite_index = spr_player_index
+    show_debug_message("drawing armor")
+    if (global.inventory.hasCyborgDefense) sprite_index = spr_player_cyarmor
+    else sprite_index = spr_player_armor
 }
 else if (x == lastX &amp;&amp; y == lastY) sprite_index = spr_player_idle
 else if (x &gt; lastX) // Left

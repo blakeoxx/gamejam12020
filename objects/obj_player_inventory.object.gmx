@@ -84,7 +84,7 @@ hasArms = false
 hasCyborgArms = false
 hasTaser = false
 hasCyborgTaser = false
-hasDefense = false
+hasDefense = true
 hasCyborgDefense = false
 </string>
           </argument>

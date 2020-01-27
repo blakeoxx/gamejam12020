@@ -127,7 +127,7 @@ if (time &lt;= 0)
             <string>///shoot shoot
 if (speed &gt; speedShot)
     {
-    if (time mod fireRate == 0)
+    if (canShoot &amp;&amp; time mod fireRate == 0)
         {
         scr_shoot_spread(x,y,direction+180,speed/4,2,(speed-2)*4);
         }
