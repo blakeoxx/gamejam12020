@@ -90,8 +90,8 @@
     <scripts name="boss">
       <script>scripts\scr_follow.gml</script>
     </scripts>
-    <scripts name="tiles">
-      <script>scripts\scr_checkNeighbours.gml</script>
+    <scripts name="spawner">
+      <script>scripts\scr_spawnEnemies.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">

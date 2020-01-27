@@ -7,7 +7,135 @@
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>radius = 96
+lifetime = 2*1000
+
+creationTime = current_time
+impactedEnemies = ds_list_create()
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>ds_list_destroy(impactedEnemies)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>collidedEnemy = collision_circle(x, y, radius, obj_enemy_parent, false, true)
+if (collidedEnemy != noone &amp;&amp; ds_list_find_index(impactedEnemies, collidedEnemy) == -1)
+{
+    ds_list_add(impactedEnemies, collidedEnemy)
+    collidedEnemy.hp -= 2
+}
+
+if (creationTime + lifetime &lt;= current_time) instance_destroy()
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_set_alpha(0.2)
+draw_set_color(c_teal)
+draw_circle(x, y, radius, false)
+draw_set_alpha(1)
+
+// Random lightning
+draw_set_color(c_blue)
+rayCount = 0
+while (rayCount &lt; 6 &amp;&amp; irandom(5) &gt; 0)
+{
+    rayDirection = irandom(359)
+    draw_primitive_begin(pr_linestrip)
+    draw_vertex(x, y)
+    // Decide where along the radius to draw the next vertex
+    for (var i = irandom_range(10, radius/3); i &lt; radius; i = min(i+irandom_range(10, radius/3), radius))
+    {
+        deviation = irandom_range(-15, 15)
+        draw_vertex(x+lengthdir_x(i, rayDirection+deviation), y+lengthdir_y(i, rayDirection+deviation))
+    }
+    draw_primitive_end()
+    rayCount += 1
+}
+
+draw_set_color(c_blue)
+draw_circle(x, y, radius, true)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>
