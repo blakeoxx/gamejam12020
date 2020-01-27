@@ -339,7 +339,11 @@ else
             <string>/// Draw character sprite
 
 flipSprite = false
-if (x == lastX &amp;&amp; y == lastY) sprite_index = spr_player_idle
+if (current_time &gt; lastDefenseStart &amp;&amp; current_time &lt;= lastDefenseEnd)
+{
+    //sprite_index = spr_player_index
+}
+else if (x == lastX &amp;&amp; y == lastY) sprite_index = spr_player_idle
 else if (x &gt; lastX) // Left
 {
     sprite_index = spr_player_side
