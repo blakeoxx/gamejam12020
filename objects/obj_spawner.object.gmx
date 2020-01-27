@@ -54,7 +54,7 @@ alarm[0] = room_speed * 2; //starting delay
 
 //oh god
 weightChange = 0;
-weightGoal = 10 + (global.wave*13); //kill this much in weight to stop spawning
+weightGoal = 100 + (global.wave*13); //kill this much in weight to stop spawning
 winDelay = 60;
 win = 0;
 enemyCount = 69;

@@ -20,7 +20,7 @@
     <option_android_build_version>0</option_android_build_version>
     <option_android_color_depth>0</option_android_color_depth>
     <option_android_compile_sdk_version>23</option_android_compile_sdk_version>
-    <option_android_display_name>gamejam12020</option_android_display_name>
+    <option_android_display_name>Pump Me Up</option_android_display_name>
     <option_android_facebook_app_display_name></option_android_facebook_app_display_name>
     <option_android_facebook_appid></option_android_facebook_appid>
     <option_android_facebook_enable>0</option_android_facebook_enable>
@@ -58,7 +58,7 @@
     <option_android_ouya_icon>Configs\Default\android\icons\ouyaIcon.png</option_android_ouya_icon>
     <option_android_package_company>companyname</option_android_package_company>
     <option_android_package_domain>com</option_android_package_domain>
-    <option_android_package_product>gamejam12020</option_android_package_product>
+    <option_android_package_product>Pump_Me_Up</option_android_package_product>
     <option_android_permission_flags>8</option_android_permission_flags>
     <option_android_portrait_splash_png>Configs\Default\android\portrait_splash.png</option_android_portrait_splash_png>
     <option_android_push_enable>0</option_android_push_enable>
@@ -211,7 +211,7 @@
     <option_changeresolution>false</option_changeresolution>
     <option_closeesc>true</option_closeesc>
     <option_colordepth>0</option_colordepth>
-    <option_display_name>GameMaker: Studio</option_display_name>
+    <option_display_name>Pump Me Up</option_display_name>
     <option_displayerrors>True</option_displayerrors>
     <option_ecma>0</option_ecma>
     <option_facebook_app_display_name></option_facebook_app_display_name>
@@ -240,7 +240,7 @@
     <option_html5_facebook_enable>0</option_html5_facebook_enable>
     <option_html5_flurry_enable>0</option_html5_flurry_enable>
     <option_html5_flurry_id></option_html5_flurry_id>
-    <option_html5_foldername>html5game</option_html5_foldername>
+    <option_html5_foldername>Pump Me Up</option_html5_foldername>
     <option_html5_generate_spotify_app>0</option_html5_generate_spotify_app>
     <option_html5_google_analytics_enable>0</option_html5_google_analytics_enable>
     <option_html5_google_tracking_id></option_html5_google_tracking_id>
@@ -251,7 +251,7 @@
     <option_html5_loadingbar>-1</option_html5_loadingbar>
     <option_html5_localrunalert>True</option_html5_localrunalert>
     <option_html5_outputdebugtoconsole>True</option_html5_outputdebugtoconsole>
-    <option_html5_outputname>index.html</option_html5_outputname>
+    <option_html5_outputname>Pump Me Up.html</option_html5_outputname>
     <option_html5_scale>-1</option_html5_scale>
     <option_html5_showcursor>True</option_html5_showcursor>
     <option_html5_splash_png>Configs\Default\html5\splash.png</option_html5_splash_png>
@@ -271,7 +271,7 @@
     <option_ios_build_version>0</option_ios_build_version>
     <option_ios_certificate>&lt; Press refresh to fetch certificate list from Mac&gt;</option_ios_certificate>
     <option_ios_device_type>3</option_ios_device_type>
-    <option_ios_display_name>gamejam12020</option_ios_display_name>
+    <option_ios_display_name>Pump Me Up</option_ios_display_name>
     <option_ios_facebook_app_display_name></option_ios_facebook_app_display_name>
     <option_ios_facebook_appid></option_ios_facebook_appid>
     <option_ios_facebook_enable>0</option_ios_facebook_enable>
@@ -342,7 +342,7 @@
     <option_ios_texture_page>1024</option_ios_texture_page>
     <option_ios_use_test_ads>false</option_ios_use_test_ads>
     <option_lastchanged></option_lastchanged>
-    <option_linux_display_name>gamejam12020</option_linux_display_name>
+    <option_linux_display_name>Pump Me Up</option_linux_display_name>
     <option_linux_enable_steam>0</option_linux_enable_steam>
     <option_linux_fullscreen>0</option_linux_fullscreen>
     <option_linux_homepage>http://www.gamejam12020.com</option_linux_homepage>
@@ -369,9 +369,9 @@
     <option_mac_appstore_incoming_allow>0</option_mac_appstore_incoming_allow>
     <option_mac_appstore_outgoing_allow>0</option_mac_appstore_outgoing_allow>
     <option_mac_build_version>0</option_mac_build_version>
-    <option_mac_copyright_info>(c)2016 CompanyName Ltd...</option_mac_copyright_info>
+    <option_mac_copyright_info>2020 :)</option_mac_copyright_info>
     <option_mac_create_app_store>0</option_mac_create_app_store>
-    <option_mac_display_name>gamejam12020</option_mac_display_name>
+    <option_mac_display_name>Pump Me Up</option_mac_display_name>
     <option_mac_enable_retina>0</option_mac_enable_retina>
     <option_mac_enable_steam>0</option_mac_enable_steam>
     <option_mac_fullscreen>0</option_mac_fullscreen>
@@ -380,7 +380,7 @@
     <option_mac_major_version>1</option_mac_major_version>
     <option_mac_menu_dock>0</option_mac_menu_dock>
     <option_mac_minor_version>0</option_mac_minor_version>
-    <option_mac_output_dir>~/GameMaker-Studio/gamejam12020</option_mac_output_dir>
+    <option_mac_output_dir>~/GameJam12020/Pump Me Up</option_mac_output_dir>
     <option_mac_scale>-1</option_mac_scale>
     <option_mac_screenkey>-1</option_mac_screenkey>
     <option_mac_showcursor>-1</option_mac_showcursor>
@@ -506,7 +506,7 @@
     <option_win8_analytics_id></option_win8_analytics_id>
     <option_win8_build_version>0</option_win8_build_version>
     <option_win8_certificate_location>Windows8_TemporaryKey.pfx</option_win8_certificate_location>
-    <option_win8_display_name>gamejam12020</option_win8_display_name>
+    <option_win8_display_name>Pump Me Up</option_win8_display_name>
     <option_win8_internet_capable>0</option_win8_internet_capable>
     <option_win8_interpolate>-1</option_win8_interpolate>
     <option_win8_landscape_allowed>-1</option_win8_landscape_allowed>
@@ -519,11 +519,11 @@
     <option_win8_minor_version>0</option_win8_minor_version>
     <option_win8_native_certificate_location>Win8NativeRunner_TemporaryKey.pfx</option_win8_native_certificate_location>
     <option_win8_native_cpu>x86</option_win8_native_cpu>
-    <option_win8_package_display_name>YourPackageDisplayName</option_win8_package_display_name>
-    <option_win8_package_name>YourPackageName</option_win8_package_name>
+    <option_win8_package_display_name>Pump Me Up</option_win8_package_display_name>
+    <option_win8_package_name>Pump Me Up</option_win8_package_name>
     <option_win8_portrait_allowed>-1</option_win8_portrait_allowed>
     <option_win8_portrait_flipped_allowed>-1</option_win8_portrait_flipped_allowed>
-    <option_win8_publisher_display_name>YourPublisherName</option_win8_publisher_display_name>
+    <option_win8_publisher_display_name>:)</option_win8_publisher_display_name>
     <option_win8_publisher_name>CN=YoyoGames</option_win8_publisher_name>
     <option_win8_revision_version>0</option_win8_revision_version>
     <option_win8_scaling_stretch>false</option_win8_scaling_stretch>
@@ -537,7 +537,7 @@
     <option_winUAP_allowfullscreen>0</option_winUAP_allowfullscreen>
     <option_winUAP_build_version>0</option_winUAP_build_version>
     <option_winUAP_certificate_location>WinUWPRunner_TemporaryKey.pfx</option_winUAP_certificate_location>
-    <option_winUAP_display_name>gamejam12020</option_winUAP_display_name>
+    <option_winUAP_display_name>Pump Me Up</option_winUAP_display_name>
     <option_winUAP_fullscreen>0</option_winUAP_fullscreen>
     <option_winUAP_internet_capable>0</option_winUAP_internet_capable>
     <option_winUAP_interpolate>-1</option_winUAP_interpolate>
@@ -551,11 +551,11 @@
     <option_winUAP_microphone_capable>0</option_winUAP_microphone_capable>
     <option_winUAP_minor_version>0</option_winUAP_minor_version>
     <option_winUAP_native_cpu>x86</option_winUAP_native_cpu>
-    <option_winUAP_package_display_name>YourPackageDisplayName</option_winUAP_package_display_name>
-    <option_winUAP_package_name>YourPackageName</option_winUAP_package_name>
+    <option_winUAP_package_display_name>Pump Me Up</option_winUAP_package_display_name>
+    <option_winUAP_package_name>Pump Me Up</option_winUAP_package_name>
     <option_winUAP_portrait_allowed>-1</option_winUAP_portrait_allowed>
     <option_winUAP_portrait_flipped_allowed>-1</option_winUAP_portrait_flipped_allowed>
-    <option_winUAP_publisher_display_name>YourPublisherName</option_winUAP_publisher_display_name>
+    <option_winUAP_publisher_display_name>:)</option_winUAP_publisher_display_name>
     <option_winUAP_publisher_name>CN=Sandbox</option_winUAP_publisher_name>
     <option_winUAP_revision_version>0</option_winUAP_revision_version>
     <option_winUAP_scaling_stretch>false</option_winUAP_scaling_stretch>
@@ -612,8 +612,8 @@
     <option_winphone_cycle_wide_image_7>Configs\Default\WinPhone\CycleWide7.png</option_winphone_cycle_wide_image_7>
     <option_winphone_cycle_wide_image_8>Configs\Default\WinPhone\CycleWide8.png</option_winphone_cycle_wide_image_8>
     <option_winphone_cycle_wide_image_9>Configs\Default\WinPhone\CycleWide9.png</option_winphone_cycle_wide_image_9>
-    <option_winphone_description>YourDescription</option_winphone_description>
-    <option_winphone_display_name>gamejam12020</option_winphone_display_name>
+    <option_winphone_description>Pump Me Up</option_winphone_description>
+    <option_winphone_display_name>Pump Me Up</option_winphone_display_name>
     <option_winphone_flip_content_back></option_winphone_flip_content_back>
     <option_winphone_flip_content_front></option_winphone_flip_content_front>
     <option_winphone_flip_medium_back_image>Configs\Default\WinPhone\FlipMedBack.png</option_winphone_flip_medium_back_image>
