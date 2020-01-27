@@ -203,8 +203,9 @@ if (collidedMoney != noone)
 if (lives &lt; lastLives)
 {
     snd = choose(snd_player_hurt1, snd_player_hurt2)
-    audio_play_sound(snd,0,1)
+    audio_play_sound(snd,1,0)
 }
+lastLives = lives
 </string>
           </argument>
         </arguments>
