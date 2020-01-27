@@ -30,6 +30,7 @@ lastY = y
 moveRate = 5    // Pixels to move per frame
 invulnTime = 3*1000  // Invulnerability time (milliseconds) after being hit
 lastInvuln = 0
+canBeSeen = true    // Used for enemy targetting
 image_speed = 0.5
 
 // Give us one life in case we start on a level without a level controller
@@ -92,11 +93,11 @@ if (y &lt; 0-sprite_height) { y = room_height+sprite_height }
 else if (y &gt; room_width+sprite_height) { y = 0-sprite_height }
 
 // Reset enemy targetting after fleshy defense wears off
-if (obj_enemy_parent.canShoot == false &amp;&amp;
+if (canBeSeen == false &amp;&amp;
     global.inventory.hasDefense &amp;&amp; !global.inventory.hasCyborgDefense &amp;&amp;
     current_time &gt; lastDefenseStart &amp;&amp; current_time &lt;= lastDefenseEnd)
 {
-    obj_enemy_parent.canShoot = true
+    canBeSeen = true
 }
 
 // Out of lives?
@@ -251,7 +252,7 @@ else
     if (lastDefenseEnd + fleshyDefenseRate &gt;= current_time) return 0;
     lastDefenseStart = current_time
     lastDefenseEnd = current_time + fleshyDefenseDuration
-    obj_enemy_parent.canShoot = false
+    canBeSeen = false
 }
 </string>
           </argument>

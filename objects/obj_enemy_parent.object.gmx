@@ -19,7 +19,7 @@
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>self</whoName>
+        <whoName>other</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
@@ -50,7 +50,8 @@ canShoot = true
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (hp &lt;= 0 &amp;&amp; !hasSpecialDeathBehavior) instance_destroy()
+            <string>canShoot = instance_find(obj_player, 0).canBeSeen
+if (hp &lt;= 0 &amp;&amp; !hasSpecialDeathBehavior) instance_destroy()
 </string>
           </argument>
         </arguments>
