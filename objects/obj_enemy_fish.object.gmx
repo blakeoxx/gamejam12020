@@ -55,7 +55,10 @@ spread = random_range(18,22);
 
 direction = point_direction(x,y,obj_player.x,obj_player.y);
 image_angle = direction;
-color = make_colour_hsv(random(255),200,200);
+
+var hue = irandom(255);
+color = make_colour_hsv(hue,200,200);
+colorShot = make_colour_hsv(hue,130,220);
 
 imageSize = random_range(1,2);
 image_xscale = imageSize;
@@ -103,7 +106,7 @@ if (time &lt;= 0)
     {
     time = fireRate;
     direction = point_direction(x,y,obj_player.x,obj_player.y) + random_range(-spread,spread);
-    if (canShoot) scr_shoot(x,y,direction,fireSpeed);
+    if (canShoot) scr_shoot(x,y,direction,fireSpeed,colorShot);
     speed = speedMax;
     image_angle = direction;
     

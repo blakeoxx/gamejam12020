@@ -43,19 +43,23 @@
 hp = 10;
 
 timeMax = 80;
-time = timeMax;
+time = 0;
 
 image_angle = direction - 90;
 
 speedMax = 6+random(2);
 speed = speedMax;
-speedReduce = speedMax/(time+20);
+speedReduce = speedMax/(timeMax+20);
 speedShot = 4; //shoot when moving faster than this
 
 fireRateMax = 6;
 fireRate = fireRateMax;
 
-color = make_colour_hsv(irandom_range(130,190),220,170);
+hue = irandom_range(130,190);
+color = make_colour_hsv(hue,220,170);
+//valMax = 75;
+//val = valMax;
+colorShot = make_colour_hsv(hue,230,75);
 </string>
           </argument>
         </arguments>
@@ -93,14 +97,14 @@ color = make_colour_hsv(irandom_range(130,190),220,170);
           <argument>
             <kind>1</kind>
             <string>///scoot scoot
-time--;
+time++;
 speed -= speedReduce;
 image_speed = speed/30;
-if (time &lt;= 0)
+if (time &gt;= timeMax)
     {
-    time = timeMax;
+    time = 0;
     direction = point_direction(x,y,obj_player.x,obj_player.y);
-    //shoot lol
+
     speed = speedMax;
     image_angle = direction - 90; // cause Max(moosa) is lazy
     }
@@ -129,7 +133,8 @@ if (speed &gt; speedShot)
     {
     if (canShoot &amp;&amp; time mod fireRate == 0)
         {
-        scr_shoot_spread(x,y,direction+180,speed/4,2,(speed-2)*4);
+        colorShot = make_colour_hsv(hue,230,75+(time*4));
+        scr_shoot_spread(x,y,direction+180,speed/4,2,(speed-2)*4,colorShot);
         }
     }
 </string>
@@ -157,7 +162,9 @@ if (speed &gt; speedShot)
             <string>draw_self();
 image_blend = color;
 
-//draw_text(x,y,"speed: " + string(speed));
+draw_text(x,y,"time: " + string(time));
+draw_text(x,y+20,"timemax: " + string(timeMax));
+//draw_text(x,y+40,"time: " + string(time));
 </string>
           </argument>
         </arguments>

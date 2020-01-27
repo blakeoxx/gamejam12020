@@ -1,4 +1,4 @@
-///scr_shoot_360(x,y,direction,speed,amount)
+///scr_shoot_360(x,y,direction,speed,amount,color)
 whole = 360/argument4;
 part = whole;
 repeat(argument4)
@@ -7,6 +7,7 @@ repeat(argument4)
         {
         direction = argument2+other.part;
         speed = argument3;
+        image_blend = argument5;
         }
     part += whole;
     }
