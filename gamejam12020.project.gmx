@@ -23,6 +23,17 @@
         <sound>sound\snd_lazor1</sound>
         <sound>sound\snd_lazor2</sound>
       </sounds>
+      <sounds name="fish">
+        <sound>sound\snd_fish1</sound>
+        <sound>sound\snd_fish2</sound>
+        <sound>sound\snd_fish3</sound>
+        <sound>sound\snd_fish4</sound>
+        <sound>sound\snd_fish5</sound>
+        <sound>sound\snd_fish6</sound>
+        <sound>sound\snd_fish7</sound>
+        <sound>sound\snd_fish8</sound>
+        <sound>sound\snd_fish9</sound>
+      </sounds>
     </sounds>
     <sounds name="click">
       <sound>sound\snd_click1</sound>
