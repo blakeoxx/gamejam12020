@@ -24,6 +24,18 @@
         <sound>sound\snd_lazor2</sound>
       </sounds>
     </sounds>
+    <sounds name="click">
+      <sound>sound\snd_click1</sound>
+      <sound>sound\snd_click2</sound>
+      <sound>sound\snd_click3</sound>
+      <sound>sound\snd_click4</sound>
+      <sound>sound\snd_click5</sound>
+      <sound>sound\snd_click6</sound>
+      <sound>sound\snd_click7</sound>
+      <sound>sound\snd_click8</sound>
+      <sound>sound\snd_click9</sound>
+      <sound>sound\snd_click10</sound>
+    </sounds>
   </sounds>
   <sprites name="sprites">
     <sprites name="player">
