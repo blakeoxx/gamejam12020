@@ -25,16 +25,36 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///enemy odds
-//should add up to 100
+            <string>/// variables
+// enemy odds
+fishChance = 70;
+lobsterChance = 15;
+squidChance = 10;
+bombChance = 5;
 
-fish = 70;
-bomb = 10;
-lobster = 20;
+// enemy weight
+fishWeight = 5;
+lobsterWeight = 20;
+squidWeight = 30;
+bombWeight = 40;
+
+// enemy timers
+fishTimer = 0.5;
+lobsterTimer = 2;
+squidtimer = 3
+bombTimer = 3;
+
+// misc
+spawning = true;
+weight = 0;
+weightLimit = 100;
+alarm[0] = room_speed * 5;
 </string>
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -51,11 +71,95 @@ lobster = 20;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///the other things
-time = 0;
-timeSpawn = 30;
+            <string>/// spawn wave
+var fish = 0;
+var lobster = 0;
+var squid = 0;
+var bomb = 0;
 
-rng = irandom(100);
+// see spawns
+while (spawning) {
+    var rng = irandom(100);
+    if (rng &lt;= fishChance) {
+        // fish spawn
+        fish++;
+        weight += fishWeight;
+    } else if (
+        rng &gt; fishChance &amp;&amp;
+        rng &lt;= fishChance + lobsterChance) {
+        // lobster spawn
+        lobster++;
+        lobster += lobsterWeight;
+    } else if (
+        rng &gt; fishChance + lobsterChance &amp;&amp;
+        rng &lt;= fishChance + lobsterChance + squidChance) {
+        // squid spawn
+        squid++;
+        squid += squidWeight;
+    } else {
+        // bomb spawn
+        bomb++;
+    }
+    
+    // check if point limit achieved
+    if (weight &gt; weightLimit - fishWeight) {
+        spawning = false;
+    }
+}
+
+// spawn the right amount
+var top = -64;
+var right = room_width + 64;
+var bot = room_height + 64;
+var left = -64;
+for (var i = 0; i &lt; fish; i++) {
+    var loc = choose("T", "R", "B", "L");
+    switch (loc) {
+        case ("T"): instance_create(irandom(room_width), top, obj_enemy_fish); break;
+        case ("R"): instance_create(right, irandom(room_height), obj_enemy_fish); break;
+        case ("B"): instance_create(irandom(room_width), bot, obj_enemy_fish); break;
+        case ("L"): instance_create(left, irandom(room_height), obj_enemy_fish); break;
+    }
+}
+
+for (var i = 0; i &lt; lobster; i++) {
+    var loc = choose("T", "R", "B", "L");
+    switch (loc) {
+        case ("T"): instance_create(irandom(room_width), top, obj_enemy_lobster); break;
+        case ("R"): instance_create(right, irandom(room_height), obj_enemy_fish); break;
+        case ("B"): instance_create(irandom(room_width), bot, obj_enemy_fish); break;
+        case ("L"): instance_create(left, irandom(room_height), obj_enemy_fish); break;
+    }
+}
+
+for (var i = 0; i &lt; squid; i++) {
+    var loc = choose("T", "R", "B", "L");
+    switch (loc) {
+        case ("T"): instance_create(irandom(room_width), top, obj_enemy_fish); break;
+        case ("R"): instance_create(right, irandom(room_height), obj_enemy_fish); break;
+        case ("B"): instance_create(irandom(room_width), bot, obj_enemy_fish); break;
+        case ("L"): instance_create(left, irandom(room_height), obj_enemy_fish); break;
+    }
+}
+
+for (var i = 0; i &lt; bomb; i++) {
+    var loc = choose("T", "R", "B", "L");
+    switch (loc) {
+        case ("T"): instance_create(irandom(room_width), top, obj_enemy_fish); break;
+        case ("R"): instance_create(right, irandom(room_height), obj_enemy_fish); break;
+        case ("B"): instance_create(irandom(room_width), bot, obj_enemy_fish); break;
+        case ("L"): instance_create(left, irandom(room_height), obj_enemy_fish); break;
+    }
+}
+
+// reset timer
+var newTimer;
+newTimer += fish * fishTimer;
+newTimer += lobster * lobsterTimer;
+newTimer += squid * squidTimer;
+newTimer += bomb * bombTimer;
+
+alarm[0] = newTimer;
 </string>
           </argument>
         </arguments>
@@ -78,15 +182,12 @@ rng = irandom(100);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///spawn random enemy
-time++;
-if (time &gt;= timeSpawn)
-    {
-    time = 0;
-    rng = irandom(100);
-    
-    //make a random guy lol
-    }
+            <string>/// end wave
+// win condition, amount of points scored?
+if (false) {
+    // stop spawner
+    alarm[0] = -1;
+}
 </string>
           </argument>
         </arguments>
