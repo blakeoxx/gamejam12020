@@ -55,6 +55,11 @@ speedCharge = 12+random(2);
 padding = 15; //buffer from edge of room
 
 color = make_colour_hsv(irandom(25),irandom_range(50,200),irandom_range(200,255));
+
+moneyChance0 = 20;
+moneyChance1 = 45;
+moneyChance2 = 30;
+moneyChance3 = 5;
 </string>
           </argument>
         </arguments>

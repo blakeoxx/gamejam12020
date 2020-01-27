@@ -26,6 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>/// variables
+// mouse
+cursor_sprite = -1;
+window_set_cursor(cr_default);
+
 // states
 btnPlayHover = false;
 btnWikiHover = false;
@@ -128,6 +132,9 @@ global.tileSize = 32;
 global.safetyMin = 3;
 global.iniChanceMin = 30;
 global.numRunMax = 3;
+
+// inventory
+global.inventory = instance_create(0, 0, obj_player_inventory);
 </string>
           </argument>
         </arguments>
@@ -306,31 +313,6 @@ if (btnWikiHover &amp;&amp; !btnWikiPressed) {
     draw_sprite(spr_button, 0, btnX, btnWikiY)
     draw_text(btnX, btnWikiY, "Wiki")
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="77">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// for Max boss testing
-part_emitter_destroy(particleSys, emitter);
-room_goto(rm_upgrades);
 </string>
           </argument>
         </arguments>

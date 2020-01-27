@@ -60,6 +60,11 @@ color = make_colour_hsv(hue,220,170);
 //valMax = 75;
 //val = valMax;
 colorShot = make_colour_hsv(hue,230,75);
+
+moneyChance0 = 0;
+moneyChance1 = 50;
+moneyChance2 = 35;
+moneyChance3 = 15;
 </string>
           </argument>
         </arguments>

@@ -63,6 +63,11 @@ colorShot = make_colour_hsv(hue,130,220);
 imageSize = random_range(1,2);
 image_xscale = imageSize;
 image_yscale = imageSize;
+
+moneyChance0 = 60;
+moneyChance1 = 30;
+moneyChance2 = 9;
+moneyChance3 = 1;
 </string>
           </argument>
         </arguments>

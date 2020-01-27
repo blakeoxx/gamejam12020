@@ -28,6 +28,7 @@
             <string>theText = "a";
 image_speed = 0;
 has = false;
+equipped = false;
 cost = 0;
 </string>
           </argument>
@@ -51,9 +52,7 @@ cost = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (has == false) {
-    image_index = 0;
-}
+            <string>image_index = 0;
 </string>
           </argument>
         </arguments>
@@ -76,9 +75,7 @@ cost = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (has == false) {
-    image_index = 1;
-}
+            <string>image_index = 1;
 </string>
           </argument>
         </arguments>
@@ -101,9 +98,7 @@ cost = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (has == false) {
-    image_index = 2;
-}
+            <string>image_index = 2;
 </string>
           </argument>
         </arguments>
@@ -128,14 +123,19 @@ cost = 0;
             <kind>1</kind>
             <string>draw_self();
 
+draw_set_halign(fa_left);
 if (has == true) {
-    draw_set_colour(c_white);
-    image_index = 3;
+    if (equipped) {
+        draw_sprite(spr_shop_bought, 0, x+125, y + sprite_get_height(sprite_index) / 2)
+    } else {
+        draw_sprite(spr_shop_bought, 1, x+125, y + sprite_get_height(sprite_index) / 2)
+    }
 } else {
     draw_set_colour(c_black);
     draw_text(x+125, y+7, cost);
 }
 
+draw_set_colour(c_black);
 draw_text(x+6, y+7, theText);
 </string>
           </argument>

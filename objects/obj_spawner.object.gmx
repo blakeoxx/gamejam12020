@@ -58,6 +58,12 @@ weightGoal = 100 + (global.wave*13); //kill this much in weight to stop spawning
 winDelay = 60;
 win = 0;
 enemyCount = 69;
+
+// if boss wave
+/*
+if (global.wave % 5 == 0) {
+    instance_create(room_width / 2, 0, obj_boss1);
+}
 </string>
           </argument>
         </arguments>
@@ -158,7 +164,7 @@ alarm[0] = newTimer * room_speed;
           <argument>
             <kind>1</kind>
             <string>///reduce time if no enemies
-enemyCount = (instance_number(obj_enemy_fish)+instance_number(obj_enemy_squid)+instance_number(obj_enemy_bomb)+instance_number(obj_enemy_lobster));
+enemyCount = (instance_number(obj_enemy_fish)+instance_number(obj_enemy_squid)+instance_number(obj_enemy_bomb)+instance_number(obj_enemy_lobster)+instance_number(obj_money));
 if (alarm[0] &gt; 60)
     {
     if (enemyCount &lt;= 1)
@@ -195,78 +201,10 @@ if (weightChange &gt;= weightGoal)
         win++;
         if (win &gt;= winDelay)
             {
-            global.wave++;
-            room_goto(rm_upgrades);
+            instance_destroy(instance_find(obj_levelController, 0));
             }
         }
-    
     }
-
-
-
-
-
-
-
-
-
-
-// win condition, amount of points scored?
-/*
-if (instance_find(obj_player, 0).score &gt;= scoreLimit) {
-    // stop spawner
-    alarm[0] = -1;
-    // do a test to see if all enemies are dead here to advance to next level or sth
-    if (allEnemiesDed) {
-        room_goto()
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// debugging
-var fish = instance_number(obj_enemy_fish)
-var lobster = instance_number(obj_enemy_lobster)
-var squid = instance_number(obj_enemy_squid)
-var bomb = instance_number(obj_enemy_bomb)
-var weight = (fish * fishWeight) + (lobster * lobsterWeight) + (squid * squidWeight) + (bomb * bombWeight);
-
-var totalChance = fishChance + lobsterChance + squidChance + bombChance;
-
-draw_text_colour(450, 10, "Time: " + string(alarm[0]), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 30, "Fish: " + string(fish), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 50, "Lobster: " + string(lobster), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 70, "Squid: " + string(squid), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 90, "Bomb: " + string(bomb), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 110, "Weight: " + string(weight), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 130, "FishChance: " + string(fishChance), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 150, "LobsterChance: " + string(lobsterChance), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 170, "SquidChance: " + string(squidChance), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 190, "BombChance: " + string(bombChance), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 210, "totalChance: " + string(totalChance), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 230, "weightChange: " + string(weightChange), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 250, "weightGoal: " + string(weightGoal), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 270, "win: " + string(win), c_black, c_black, c_black, c_black, 1);
-draw_text_colour(450, 290, "global.wave: " + string(global.wave), c_black, c_black, c_black, c_black, 1);
 </string>
           </argument>
         </arguments>

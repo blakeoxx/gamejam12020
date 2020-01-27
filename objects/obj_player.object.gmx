@@ -33,8 +33,6 @@ lastInvuln = 0
 canBeSeen = true    // Used for enemy targetting
 image_speed = 0.5
 
-// Give us one life in case we start on a level without a level controller
-if (lives &lt;= 0) lives = 1
 lastLives = lives
 
 // Fire/recharge rates for abilities (milliseconds)
@@ -211,6 +209,31 @@ lastLives = lives
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_money">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// coin pickup
+global.inventory.money += 1;
+instance_destroy(other);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="5" enumb="32">
       <action>
         <libid>1</libid>
@@ -230,9 +253,7 @@ lastLives = lives
             <kind>1</kind>
             <string>/// Use taser
 
-if (!global.inventory.hasTaser) return 0;
-
-if (global.inventory.hasCyborgTaser)
+if (global.inventory.hasCyborgTaser &amp;&amp; global.inventory.typeTaser == 1)
 {
     if (lastTaserEnd + cyborgTaserRate &gt;= current_time) return 0;
     taser = instance_create(x, y, obj_player_cytaser)
@@ -240,7 +261,7 @@ if (global.inventory.hasCyborgTaser)
     lastTaserStart = current_time
     lastTaserEnd = current_time + cyborgTaserDuration
 }
-else
+else if (global.inventory.hasTaser &amp;&amp; global.inventory.typeTaser == 0)
 {
     if (lastTaserEnd + fleshyTaserRate &gt;= current_time) return 0;
     taser = instance_create(x, y, obj_player_taser)
@@ -272,15 +293,13 @@ else
             <kind>1</kind>
             <string>/// Use shield
 
-if (!global.inventory.hasDefense) return 0;
-
-if (global.inventory.hasCyborgDefense)
+if (global.inventory.hasCyborgDefense &amp;&amp; global.inventory.typeDefense = 1)
 {
     if (lastDefenseEnd + cyborgDefenseRate &gt;= current_time) return 0;
     lastDefenseStart = current_time
     lastDefenseEnd = current_time + cyborgDefenseDuration
 }
-else
+else if (global.inventory.hasDefense &amp;&amp; global.inventory.typeDefense = 0)
 {
     if (lastDefenseEnd + fleshyDefenseRate &gt;= current_time) return 0;
     lastDefenseStart = current_time
@@ -311,16 +330,14 @@ else
             <kind>1</kind>
             <string>/// Use melee
 
-if (!global.inventory.hasArms) return 0;
-
 targetDirection = point_direction(x, y, mouse_x, mouse_y)
 
-if (global.inventory.hasCyborgArms)
+if (global.inventory.hasCyborgArms &amp;&amp; global.inventory.typeArm == 1)
 {
     if (lastArm + cyborgArmRate &gt;= current_time) return 0;
     lastArm = current_time
 }
-else
+else if (global.inventory.hasArms &amp;&amp; global.inventory.typeArm == 0)
 {
     if (lastArm + fleshyArmRate &gt;= current_time) return 0;
     lastArm = current_time
@@ -351,14 +368,14 @@ else
 
 targetDirection = point_direction(x, y, mouse_x, mouse_y)
 
-if (global.inventory.hasCyborgShots)
+if (global.inventory.hasCyborgShots &amp;&amp; global.inventory.typeShot == 1)
 {
     if (lastShot + cyborgShotRate &gt;= current_time) return 0;
     laser = instance_create(x, y, obj_player_laser)
     laser.direction = targetDirection
     lastShot = current_time
 }
-else
+else if (global.inventory.hasShots &amp;&amp; global.inventory.typeShot == 0)
 {
     if (lastShot + fleshyShotRate &gt;= current_time) return 0;
     bullet = instance_create(x, y, obj_player_bullet)
@@ -392,7 +409,6 @@ else
 flipSprite = false
 if (current_time &gt; lastDefenseStart &amp;&amp; current_time &lt;= lastDefenseEnd)
 {
-    show_debug_message("drawing armor")
     if (global.inventory.hasCyborgDefense) sprite_index = spr_player_cyarmor
     else sprite_index = spr_player_armor
 }

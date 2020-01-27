@@ -25,73 +25,34 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_find(obj_player_inventory, 0) != id) instance_destroy()
-
-global.inventory = self
-event_user(0)
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="5" enumb="81">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Add lives cheat
-lives += 1
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="10">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>/// default inventory
+lives = 10;
+money = 0;
+points = 0;
 
-lives = 2
-money = 0
-hasCyborgShots = false
-hasArms = false
-hasCyborgArms = false
-hasTaser = false
-hasCyborgTaser = false
-hasDefense = false
-hasCyborgDefense = false
+// shooting upgrade
+hasShots = true;
+hasCyborgShots = false;
+typeShot = 0;
+
+// arms upgrade
+hasArms = false;
+hasCyborgArms = false;
+typeArm = 0;
+
+// taser upgrade
+hasTaser = false;
+hasCyborgTaser = false;
+typeTaser = 0;
+
+// defense upgrade
+hasDefense = false;
+hasCyborgDefense = false;
+typeDefense = 0;
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="7" enumb="4">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -108,7 +69,10 @@ hasCyborgDefense = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_mainmenu || room == rm_gameover) event_user(0)
+            <string>/// drawing
+boardW = sprite_get_width(spr_board);
+boardX = boardW / 2;
+textY = sprite_get_height(spr_board) / 2;
 </string>
           </argument>
         </arguments>
@@ -131,11 +95,23 @@ hasCyborgDefense = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (room == rm_mainmenu || room == rm_gameover) return 0;
+            <string>/// draw gui
+// drawing
+draw_set_colour(c_white);
+draw_set_halign(fa_middle);
+draw_set_valign(fa_top);
 
-draw_set_halign(fa_left)
-draw_set_valign(fa_top)
-draw_text_color(0, 0, "Lives: " + string(lives) + "#Money: " + string(money), c_white, c_white, c_white, c_white, 1)
+draw_sprite(spr_board, 0, boardX + 0 * boardW, 0);
+draw_text(boardX + 0 * boardW, textY, "Lives: " + string(lives));
+
+draw_sprite(spr_board, 0, boardX + 1 * boardW, 0);
+draw_text(boardX + 1 * boardW, textY, "Money: " + string(global.inventory.money));
+
+draw_sprite(spr_board, 0, boardX + 2 * boardW, 0);
+draw_text(boardX + 2 * boardW, textY, "Wave: " + string(global.wave));
+
+draw_sprite(spr_board, 0, boardX + 3 * boardW, 0);
+draw_text(boardX + 3 * boardW, textY, "Difficulty: " + string(global.difficulty));
 </string>
           </argument>
         </arguments>
