@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>speed = 10
+
+snd = choose(snd_player_shoot1, snd_player_shoot2, snd_player_shoot3, snd_player_shoot4, snd_player_shoot5, snd_player_shoot6)
+audio_play_sound(snd,1,0)
 </string>
           </argument>
         </arguments>
