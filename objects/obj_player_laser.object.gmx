@@ -31,6 +31,9 @@ lifetime = 0.2*1000
 
 creationTime = current_time
 impactedEnemies = ds_list_create()
+
+snd = choose(snd_player_laser)
+audio_play_sound(snd,1,0)
 </string>
           </argument>
         </arguments>

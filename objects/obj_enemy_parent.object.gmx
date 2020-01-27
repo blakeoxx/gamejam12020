@@ -28,6 +28,8 @@
             <string>hp = 1
 hasSpecialDeathBehavior = false
 canShoot = true
+
+lasthp = hp
 </string>
           </argument>
         </arguments>
@@ -75,6 +77,14 @@ obj_spawner.weightChange += weight;
           <argument>
             <kind>1</kind>
             <string>canShoot = instance_find(obj_player, 0).canBeSeen
+
+if (hp &lt; lasthp)
+{
+    snd = choose(snd_enemy_hurt1, snd_enemy_hurt2, snd_enemy_hurt3, snd_enemy_hurt4, snd_enemy_hurt5, snd_enemy_hurt6, snd_enemy_hurt7)
+    audio_play_sound(snd,1,0)
+}
+lasthp = hp
+
 if (hp &lt;= 0 &amp;&amp; !hasSpecialDeathBehavior) instance_destroy()
 </string>
           </argument>
