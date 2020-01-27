@@ -7,6 +7,21 @@
   <sounds name="sound">
     <sounds name="player">
       <sound>sound\snd_money</sound>
+      <sound>sound\snd_player_hurt1</sound>
+      <sound>sound\snd_player_hurt2</sound>
+      <sound>sound\snd_player_dead</sound>
+      <sounds name="abilities">
+        <sound>sound\snd_player_camo</sound>
+        <sound>sound\snd_player_laser</sound>
+        <sound>sound\snd_player_shield</sound>
+        <sound>sound\snd_player_shock</sound>
+        <sound>sound\snd_player_shoot1</sound>
+        <sound>sound\snd_player_shoot2</sound>
+        <sound>sound\snd_player_shoot3</sound>
+        <sound>sound\snd_player_shoot4</sound>
+        <sound>sound\snd_player_shoot5</sound>
+        <sound>sound\snd_player_shoot6</sound>
+      </sounds>
     </sounds>
     <sounds name="enemy">
       <sounds name="lobster">
@@ -33,6 +48,17 @@
         <sound>sound\snd_fish7</sound>
         <sound>sound\snd_fish8</sound>
         <sound>sound\snd_fish9</sound>
+      </sounds>
+      <sounds name="generic">
+        <sounds name="hurt">
+          <sound>sound\snd_enemy_hurt1</sound>
+          <sound>sound\snd_enemy_hurt2</sound>
+          <sound>sound\snd_enemy_hurt3</sound>
+          <sound>sound\snd_enemy_hurt4</sound>
+          <sound>sound\snd_enemy_hurt5</sound>
+          <sound>sound\snd_enemy_hurt6</sound>
+          <sound>sound\snd_enemy_hurt7</sound>
+        </sounds>
       </sounds>
     </sounds>
     <sounds name="click">
