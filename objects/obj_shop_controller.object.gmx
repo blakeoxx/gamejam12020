@@ -197,7 +197,7 @@ if (position_meeting(mouse_x, mouse_y, btnFleshInk) &amp;&amp; btnFleshInk.has =
     preview.image_index = 5;
     if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnCyborgLazer.cost) {
     //buy it!
-    global.inventory.hasCyborgTaser = true;
+    global.inventory.hasCyborgShot = true;
     btnCyborgLazer.has = true;
     global.inventory.money -= btnCyborgLazer.cost;
     cyborgTaserPreview = instance_create(130,204,obj_shop_addon);
@@ -211,6 +211,7 @@ if (position_meeting(mouse_x, mouse_y, btnFleshInk) &amp;&amp; btnFleshInk.has =
     preview.image_index = 6;
     if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnCyborgFist.cost) {
     //buy it!
+    global.inventory.hasArms = true;
     global.inventory.hasCyborgArms = true;
     btnCyborgFist.has = true;
     global.inventory.money -= btnCyborgFist.cost;
@@ -225,7 +226,8 @@ if (position_meeting(mouse_x, mouse_y, btnFleshInk) &amp;&amp; btnFleshInk.has =
     preview.image_index = 7;
     if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnCyborgShock.cost) {
     //buy it!
-    global.inventory.hasCyborgShots = true;
+    global.inventory.hasShock = true;
+    global.inventory.hasCyborgShock = true;
     btnCyborgShock.has = true;
     global.inventory.money -= btnCyborgShock.cost;
     cyborgPreview = instance_create(130,204,obj_shop_addon);
@@ -239,6 +241,7 @@ if (position_meeting(mouse_x, mouse_y, btnFleshInk) &amp;&amp; btnFleshInk.has =
     preview.image_index = 8;
     if (mouse_check_button_released(mb_left) == true &amp;&amp; global.inventory.money &gt;= btnCyborgArmor.cost) {
     //buy it!
+    global.inventory.hasDefense = true;
     global.inventory.hasCyborgDefense = true;
     btnCyborgArmor.has = true;
     global.inventory.money -= btnCyborgArmor.cost;

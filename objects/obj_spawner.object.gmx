@@ -45,11 +45,19 @@ squidTimer = 10;
 bombTimer = 10;
 
 // misc
-scoreLimit = 1000 * global.wave;
+scoreLimit = 1000 * global.wave; //perhaps clamp
 spawning = true;
-weight = 0;
+//weight = 0;
 weightLimit = 50 * global.difficulty;
-alarm[0] = room_speed * 2;
+alarm[0] = room_speed * 2; //starting delay
+
+
+//oh god
+weightChange = 0;
+weightGoal = 10 + (global.wave*13); //kill this much in weight to stop spawning
+winDelay = 60;
+win = 0;
+enemyCount = 69;
 </string>
           </argument>
         </arguments>
@@ -113,10 +121,10 @@ while (spawning) {
 }
 
 // spawn the right amount
-scr_spawnEnemies(fish, obj_enemy_fish);
-scr_spawnEnemies(lobster, obj_enemy_lobster);
-scr_spawnEnemies(squid, obj_enemy_squid);
-scr_spawnEnemies(bomb, obj_enemy_bomb);
+scr_spawnEnemies(fish, obj_enemy_fish, fishWeight);
+scr_spawnEnemies(lobster, obj_enemy_lobster, lobsterWeight);
+scr_spawnEnemies(squid, obj_enemy_squid, squidWeight);
+scr_spawnEnemies(bomb, obj_enemy_bomb, bombWeight);
 
 // reset timer
 var newTimer = 0;
@@ -149,7 +157,59 @@ alarm[0] = newTimer * room_speed;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///reduce time if no enemies
+enemyCount = (instance_number(obj_enemy_fish)+instance_number(obj_enemy_squid)+instance_number(obj_enemy_bomb)+instance_number(obj_enemy_lobster));
+if (alarm[0] &gt; 60)
+    {
+    if (enemyCount &lt;= 1)
+        {
+        alarm[0] = 60;
+        }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// end wave
+if (weightChange &gt;= weightGoal)
+    {
+    alarm[0] = -1; //stop spawning
+    if (enemyCount == 0)
+        {
+        win++;
+        if (win &gt;= winDelay)
+            {
+            room_goto(rm_upgrades);
+            }
+        }
+    
+    }
+
+
+
+
+
+
+
+
+
+
 // win condition, amount of points scored?
 /*
 if (instance_find(obj_player, 0).score &gt;= scoreLimit) {
@@ -187,7 +247,7 @@ var fish = instance_number(obj_enemy_fish)
 var lobster = instance_number(obj_enemy_lobster)
 var squid = instance_number(obj_enemy_squid)
 var bomb = instance_number(obj_enemy_bomb)
-var weight = fish * fishWeight + lobster * lobsterWeight + squid * squidWeight + bomb * bombWeight;
+var weight = (fish * fishWeight) + (lobster * lobsterWeight) + (squid * squidWeight) + (bomb * bombWeight);
 
 var totalChance = fishChance + lobsterChance + squidChance + bombChance;
 
@@ -202,6 +262,9 @@ draw_text_colour(450, 150, "LobsterChance: " + string(lobsterChance), c_black, c
 draw_text_colour(450, 170, "SquidChance: " + string(squidChance), c_black, c_black, c_black, c_black, 1);
 draw_text_colour(450, 190, "BombChance: " + string(bombChance), c_black, c_black, c_black, c_black, 1);
 draw_text_colour(450, 210, "totalChance: " + string(totalChance), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 230, "weightChange: " + string(weightChange), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 250, "weightGoal: " + string(weightGoal), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 270, "win: " + string(win), c_black, c_black, c_black, c_black, 1);
 </string>
           </argument>
         </arguments>
