@@ -123,7 +123,7 @@ if (mode == 1) //attack mode
     time++;
     if (time &gt; timeMax) //small delay between activating and attacking
         {
-        if (time mod fireRate == 0)
+        if (canShoot &amp;&amp; time mod fireRate == 0)
             {
             scr_shoot_360(x,y,dir,fireSpeed,4);
             shot--;

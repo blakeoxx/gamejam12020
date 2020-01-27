@@ -49,6 +49,7 @@ stop = false;
 mySpeed = 1;
 noFollow = false;
 directionToPrev = 0;
+lazor = noone
 </string>
           </argument>
         </arguments>
@@ -71,10 +72,13 @@ directionToPrev = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>bullet = instance_create(self.x, self.y, obj_boss_bullet);
-bullet.direction = direction+180;
-bullet.speed = 100;
-audio_play_sound(snd_lobster7,5,false);
+            <string>if (canShoot)
+{
+    bullet = instance_create(self.x, self.y, obj_boss_bullet);
+    bullet.direction = direction+180;
+    bullet.speed = 100;
+    audio_play_sound(snd_lobster7,5,false);
+}
 alarm[3] = random_range(200, 400);
 </string>
           </argument>
@@ -106,9 +110,7 @@ stop = false;
 // reset alarm
 alarm[0] = random_range(100, 200);
 
-instance_destroy(lazor);
-
-stop = false;
+if (lazor != noone) instance_destroy(lazor);
 </string>
           </argument>
         </arguments>
@@ -131,10 +133,13 @@ stop = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// shoot a bullet
-lazor = instance_create(self.x, self.y, obj_boss_lazor);
-lazor.initDirection = direction;
-audio_play_sound(snd_lazor1,5,false);
+            <string>if (canShoot)
+{
+    // shoot a bullet
+    lazor = instance_create(self.x, self.y, obj_boss_lazor);
+    lazor.initDirection = direction;
+    audio_play_sound(snd_lazor1,5,false);
+}
 image_blend = c_white;
 
 // reset alarm

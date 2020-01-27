@@ -27,28 +27,29 @@
             <kind>1</kind>
             <string>/// variables
 // enemy odds
-fishChance = 70;
-lobsterChance = 15;
-squidChance = 10;
-bombChance = 5;
+fishChance = max(60, 100 - global.wave);
+lobsterChance = min(20, 0 + global.wave / 2);
+squidChance = min(10, 0 + global.wave / 4);
+bombChance = min(10, 0 + global.wave / 4);
 
 // enemy weight
-fishWeight = 5;
+fishWeight = 10;
 lobsterWeight = 20;
-squidWeight = 30;
-bombWeight = 40;
+squidWeight = 35;
+bombWeight = 35;
 
 // enemy timers
-fishTimer = 0.5;
-lobsterTimer = 2;
-squidtimer = 3
-bombTimer = 3;
+fishTimer = 3;
+lobsterTimer = 5;
+squidTimer = 10;
+bombTimer = 10;
 
 // misc
+scoreLimit = 1000 * global.wave;
 spawning = true;
 weight = 0;
-weightLimit = 100;
-alarm[0] = room_speed * 5;
+weightLimit = 50 * global.difficulty;
+alarm[0] = room_speed * 2;
 </string>
           </argument>
         </arguments>
@@ -77,89 +78,55 @@ var lobster = 0;
 var squid = 0;
 var bomb = 0;
 
+var weight = 0;
+weight += instance_number(obj_enemy_fish) * fishWeight;
+weight += instance_number(obj_enemy_lobster) * lobsterWeight;
+weight += instance_number(obj_enemy_squid) * squidWeight;
+weight += instance_number(obj_enemy_bomb) * bombWeight;
+
 // see spawns
 while (spawning) {
-    var rng = irandom(100);
-    if (rng &lt;= fishChance) {
-        // fish spawn
-        fish++;
-        weight += fishWeight;
-    } else if (
-        rng &gt; fishChance &amp;&amp;
-        rng &lt;= fishChance + lobsterChance) {
-        // lobster spawn
-        lobster++;
-        lobster += lobsterWeight;
-    } else if (
-        rng &gt; fishChance + lobsterChance &amp;&amp;
-        rng &lt;= fishChance + lobsterChance + squidChance) {
-        // squid spawn
-        squid++;
-        squid += squidWeight;
-    } else {
-        // bomb spawn
-        bomb++;
-    }
-    
     // check if point limit achieved
     if (weight &gt; weightLimit - fishWeight) {
         spawning = false;
+        break;
+    }
+    
+    var rng = irandom(100);
+    if (rng &lt;= bombChance &amp;&amp; weight + bombWeight &lt;= 100) {
+        // bomb spawn
+        bomb++;
+        weight += bombWeight;
+    } else if (rng &gt; bombChance &amp;&amp; rng &lt;= bombChance + squidChance &amp;&amp; weight + squidWeight &lt;= 100) {
+        // squid spawn
+        squid++;
+        weight += squidWeight;
+    } else if (rng &gt; bombChance + squidChance &amp;&amp; rng &lt;= bombChance + squidChance + lobsterChance &amp;&amp; weight + lobsterWeight &lt;= 100) {
+        // lobster spawn
+        lobster++;
+        weight += lobsterWeight;
+    } else {
+        // fish spawn
+        fish++;
+        weight += fishWeight;
     }
 }
 
 // spawn the right amount
-var top = -64;
-var right = room_width + 64;
-var bot = room_height + 64;
-var left = -64;
-for (var i = 0; i &lt; fish; i++) {
-    var loc = choose("T", "R", "B", "L");
-    switch (loc) {
-        case ("T"): instance_create(irandom(room_width), top, obj_enemy_fish); break;
-        case ("R"): instance_create(right, irandom(room_height), obj_enemy_fish); break;
-        case ("B"): instance_create(irandom(room_width), bot, obj_enemy_fish); break;
-        case ("L"): instance_create(left, irandom(room_height), obj_enemy_fish); break;
-    }
-}
-
-for (var i = 0; i &lt; lobster; i++) {
-    var loc = choose("T", "R", "B", "L");
-    switch (loc) {
-        case ("T"): instance_create(irandom(room_width), top, obj_enemy_lobster); break;
-        case ("R"): instance_create(right, irandom(room_height), obj_enemy_fish); break;
-        case ("B"): instance_create(irandom(room_width), bot, obj_enemy_fish); break;
-        case ("L"): instance_create(left, irandom(room_height), obj_enemy_fish); break;
-    }
-}
-
-for (var i = 0; i &lt; squid; i++) {
-    var loc = choose("T", "R", "B", "L");
-    switch (loc) {
-        case ("T"): instance_create(irandom(room_width), top, obj_enemy_fish); break;
-        case ("R"): instance_create(right, irandom(room_height), obj_enemy_fish); break;
-        case ("B"): instance_create(irandom(room_width), bot, obj_enemy_fish); break;
-        case ("L"): instance_create(left, irandom(room_height), obj_enemy_fish); break;
-    }
-}
-
-for (var i = 0; i &lt; bomb; i++) {
-    var loc = choose("T", "R", "B", "L");
-    switch (loc) {
-        case ("T"): instance_create(irandom(room_width), top, obj_enemy_fish); break;
-        case ("R"): instance_create(right, irandom(room_height), obj_enemy_fish); break;
-        case ("B"): instance_create(irandom(room_width), bot, obj_enemy_fish); break;
-        case ("L"): instance_create(left, irandom(room_height), obj_enemy_fish); break;
-    }
-}
+scr_spawnEnemies(fish, obj_enemy_fish);
+scr_spawnEnemies(lobster, obj_enemy_lobster);
+scr_spawnEnemies(squid, obj_enemy_squid);
+scr_spawnEnemies(bomb, obj_enemy_bomb);
 
 // reset timer
 var newTimer = 0;
-newTimer += fish * fishTimer;
-newTimer += lobster * lobsterTimer;
-newTimer += squid * squidTimer;
-newTimer += bomb * bombTimer;
+newTimer += instance_number(obj_enemy_fish) * fishTimer;
+newTimer += instance_number(obj_enemy_lobster) * lobsterTimer;
+newTimer += instance_number(obj_enemy_squid) * squidTimer;
+newTimer += instance_number(obj_enemy_bomb) * bombTimer;
 
-alarm[0] = newTimer;
+spawning = true;
+alarm[0] = newTimer * room_speed;
 </string>
           </argument>
         </arguments>
@@ -184,10 +151,57 @@ alarm[0] = newTimer;
             <kind>1</kind>
             <string>/// end wave
 // win condition, amount of points scored?
-if (false) {
+/*
+if (instance_find(obj_player, 0).score &gt;= scoreLimit) {
     // stop spawner
     alarm[0] = -1;
+    // do a test to see if all enemies are dead here to advance to next level or sth
+    if (allEnemiesDed) {
+        room_goto()
+    }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// debugging
+var fish = instance_number(obj_enemy_fish)
+var lobster = instance_number(obj_enemy_lobster)
+var squid = instance_number(obj_enemy_squid)
+var bomb = instance_number(obj_enemy_bomb)
+var weight = fish * fishWeight + lobster * lobsterWeight + squid * squidWeight + bomb * bombWeight;
+
+var totalChance = fishChance + lobsterChance + squidChance + bombChance;
+
+draw_text_colour(450, 10, "Time: " + string(alarm[0]), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 30, "Fish: " + string(fish), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 50, "Lobster: " + string(lobster), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 70, "Squid: " + string(squid), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 90, "Bomb: " + string(bomb), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 110, "Weight: " + string(weight), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 130, "FishChance: " + string(fishChance), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 150, "LobsterChance: " + string(lobsterChance), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 170, "SquidChance: " + string(squidChance), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 190, "BombChance: " + string(bombChance), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 210, "totalChance: " + string(totalChance), c_black, c_black, c_black, c_black, 1);
 </string>
           </argument>
         </arguments>

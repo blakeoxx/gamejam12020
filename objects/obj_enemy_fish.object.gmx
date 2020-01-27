@@ -103,7 +103,7 @@ if (time &lt;= 0)
     {
     time = fireRate;
     direction = point_direction(x,y,obj_player.x,obj_player.y) + random_range(-spread,spread);
-    scr_shoot(x,y,direction,fireSpeed);
+    if (canShoot) scr_shoot(x,y,direction,fireSpeed);
     speed = speedMax;
     image_angle = direction;
     

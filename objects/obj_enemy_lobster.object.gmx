@@ -95,7 +95,7 @@ color = make_colour_hsv(irandom(25),irandom_range(50,200),irandom_range(200,255)
 if (mode == 0)
     {
     time++;
-    if (time &gt;= timeAim)
+    if (canShoot &amp;&amp; time &gt;= timeAim)
         {
         mode = 1;
         speed = speedCharge;
