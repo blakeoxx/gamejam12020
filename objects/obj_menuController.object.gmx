@@ -210,7 +210,8 @@ if (point_in_rectangle(mouse_x, mouse_y, btnX - btnWidthHalf, btnPlayY - btnHeig
     btnPlayHover = true;
     
     // play button click
-    if (mouse_check_button(mb_left)) {
+    if (mouse_check_button_pressed(mb_left)) {
+        audio_play_sound(snd_click8,1,0);
         btnPlayPressed = true;
     }
 } else {
@@ -224,7 +225,8 @@ if (point_in_rectangle(mouse_x, mouse_y, btnX - btnWidthHalf, btnWikiY - btnHeig
     btnWikiHover = true;
     
     // wiki button click
-    if (mouse_check_button(mb_left)) {
+    if (mouse_check_button_pressed(mb_left)) {
+        audio_play_sound(snd_click6,1,0);
         btnWikiPressed = true;
     }
 } else {
