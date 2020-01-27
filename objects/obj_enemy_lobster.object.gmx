@@ -154,8 +154,6 @@ draw_self();
 
 if (mode == 0)
     {
-    draw_line(x,y,lerp(x,targetx,50),lerp(y,targety,50));
-    
     if (time mod 2 == 0 || time mod 3 == 0)
         {
         draw_set_colour(c_red);
@@ -164,6 +162,7 @@ if (mode == 0)
         {
         draw_set_colour(c_black);
         }
+    draw_line(x,y,lerp(x,targetx,50),lerp(y,targety,50));
     }
 
 </string>
