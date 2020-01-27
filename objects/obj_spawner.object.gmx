@@ -195,6 +195,7 @@ if (weightChange &gt;= weightGoal)
         win++;
         if (win &gt;= winDelay)
             {
+            global.wave++;
             room_goto(rm_upgrades);
             }
         }
@@ -265,6 +266,7 @@ draw_text_colour(450, 210, "totalChance: " + string(totalChance), c_black, c_bla
 draw_text_colour(450, 230, "weightChange: " + string(weightChange), c_black, c_black, c_black, c_black, 1);
 draw_text_colour(450, 250, "weightGoal: " + string(weightGoal), c_black, c_black, c_black, c_black, 1);
 draw_text_colour(450, 270, "win: " + string(win), c_black, c_black, c_black, c_black, 1);
+draw_text_colour(450, 290, "global.wave: " + string(global.wave), c_black, c_black, c_black, c_black, 1);
 </string>
           </argument>
         </arguments>
