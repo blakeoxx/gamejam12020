@@ -156,8 +156,8 @@ if (time &lt;= 0)
             <kind>1</kind>
             <string>///draw the guy
 image_speed = speed/4;
-draw_self();
 image_blend = color;
+draw_self();
 </string>
           </argument>
         </arguments>
