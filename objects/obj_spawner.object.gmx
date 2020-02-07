@@ -163,15 +163,15 @@ alarm[0] = newTimer * room_speed;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///reduce time if no enemies
-enemyCount = (instance_number(obj_enemy_fish)+instance_number(obj_enemy_squid)+instance_number(obj_enemy_bomb)+instance_number(obj_enemy_lobster)+instance_number(obj_money));
+            <string>///reduce time if no enemies or money
+enemyCount = instance_number(obj_enemy_parent) + instance_number(obj_money);
 if (alarm[0] &gt; 60)
-    {
+{
     if (enemyCount &lt;= 1)
-        {
+    {
         alarm[0] = 60;
-        }
     }
+}
 </string>
           </argument>
         </arguments>
