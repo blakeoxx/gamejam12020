@@ -166,10 +166,6 @@ if (speed &gt; speedShot)
             <kind>1</kind>
             <string>draw_self();
 image_blend = color;
-
-draw_text(x,y,"time: " + string(time));
-draw_text(x,y+20,"timemax: " + string(timeMax));
-//draw_text(x,y+40,"time: " + string(time));
 </string>
           </argument>
         </arguments>
